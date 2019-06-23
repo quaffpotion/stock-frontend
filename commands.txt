@@ -1,0 +1,19 @@
+> ng new
+(fill out options)
+
+> npm install --save bootstrap@3
+(then add path to css file in angular.json)
+
+> npm install --save requirejs
+
+[Solves error: Cannot find name 'require'. Do you need to install type definitions for node? Try npm i @types/node.]
+> npm install --save @types/node
+
+(Add
+
+{
+"compilerOptions": {
+    "types": ["node"]
+}
+
+to ./tsconfig.json and ./src/tsconfig.app.json)
