@@ -3,6 +3,57 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
+
+  <input #searchBox id="search-box" (input)="pushSearchTerm(searchBox.value)"/>
+
+<!-- this is broken how? -->
+<!-- <div class="row">
+  <div class="col-xs-10">
+    <ul class="list-group">
+      <a *ngFor="let s of mockdata" class="list-group-item" style="cursor: pointer">
+        {{ s.name }} ({{ s.closingprice }})
+      </a>
+    </ul>
+  </div>
+</div> -->
+
+<ul>
+  <li>test</li>
+  <li>hello</li>
+  <li *ngFor="let i of [1,2,3,4]">some text {{ i }}</li>
+  <li *ngFor="let q of testing">more {{ q }}</li>
+</ul>
+
+<ul class="list-group">
+  <a *ngFor="let i of testing" class="list-group-item">{{ i }}</a>
+</ul>
+
+
+  <!-- <ul>
+    <li *ngFor="let s of testing">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+            Apple
+          </div>
+          <div class="panel-body">
+            AAPL
+            146.24
+          </div>
+        </div>
+    </li>
+  </ul> -->
+
+  <!-- <div *ngFor="let s of mockdata" class="panel panel-default">
+    <div class="panel-heading">
+      {{ s.name }}
+    </div>
+    <div class="panel-body">
+      {{ s.symbol }}
+      {{ s.closingprice }}
+    </div>
+  </div> -->
+
+
   <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
 <h2>Here are some links to help you start: </h2>
