@@ -3,17 +3,6 @@ import { Observable, Subject, of, interval } from 'rxjs';
 import { tap, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { Stock } from './stock.model'
 
-
-const filteredstocks = of(mockdata)
-
-// const myinterval = interval(500)
-// const subB = myinterval.subscribe(value => console.log(value))
-// const tappedsub = myinterval.pipe(
-//   tap(
-//     _ => console.log("tapped" + _)
-//   )
-// ).subscribe()
-
 var json = require('../../data.json')
 console.log(json)
 
@@ -33,9 +22,6 @@ var mockdata = [
 export class AppComponent {
 
   stocks$: Observable<Stock[]>
-
-  //We want multiple things to be able to get
-  //the stream of searches
   private searchTerms = new Subject<string>()
 
   pushSearchTerm(term: string) {
@@ -65,5 +51,4 @@ export class AppComponent {
   }
 
   title = 'stock-frontend';
-  testing = [1,2,3]
 }
