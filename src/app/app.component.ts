@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { Observable, Subject, of, interval } from 'rxjs';
-import { tap } from 'rxjs/operators'
+import { tap, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { Stock } from './stock.model'
 
-//We want multiple things to be able to get
-//the stream of searches
-const searchTerms = new Subject<string>()
 
 const filteredstocks = of(mockdata)
 
@@ -24,10 +21,9 @@ var mockdata = [
   new Stock("Tesla", "T", 176.27),
   {name: "Apple", symbol: "AAPL", closingprice: 142.67},
   {name: "Microsoft", symbol: "MSFT", closingprice: 71.82},
-  {name: "Planting Life Quality", symbol: "PLQ", closingprice: 91.71}
+  {name: "Planting Life Quality", symbol: "PLQ", closingprice: 91.71},
+  {name: "Max", symbol: "ZZZ", closingprice: 89.35}
 ]
-
-//const subA = searchTerms.subscribe(term => console.log(term))
 
 @Component({
   selector: 'app-root',
@@ -36,14 +32,37 @@ var mockdata = [
 })
 export class AppComponent {
 
+  stocks$: Observable<Stock[]>
+
+  //We want multiple things to be able to get
+  //the stream of searches
+  private searchTerms = new Subject<string>()
+
   pushSearchTerm(term: string) {
 
     console.log("Pushing: " + term)
-    searchTerms.next(term)
+    this.searchTerms.next(term)
 
   }
 
-  //return mockdata.filter(stock => stock.symbol.includes(term))
+  searchStocks(term: string): Observable<Stock[]> {
+
+    return of(mockdata.filter(item => (item.name.includes(term) || item.symbol.includes(term))))
+
+  }
+
+  ngOnInit(): void {
+
+    this.stocks$ = this.searchTerms.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap(
+        (term: string) => this.searchStocks(term)
+      ),
+      tap(searchResult => console.log("stocks found: ", searchResult))
+    )
+
+  }
 
   title = 'stock-frontend';
   testing = [1,2,3]

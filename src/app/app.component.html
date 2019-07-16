@@ -6,7 +6,18 @@
 
   <input #searchBox id="search-box" (input)="pushSearchTerm(searchBox.value)"/>
 
+  <ul class="search-result">
+    <li *ngFor="let stock of stocks$ | async">
+      {{ stock.name }}
+    </li>
+  </ul>
+
+  <ul>
+    <li *ngFor="let x of mockdata">sometext</li>
+  </ul>
+
 <!-- this is broken how? -->
+<!-- seems to be angular doesn't have access to mockdata -->
 <!-- <div class="row">
   <div class="col-xs-10">
     <ul class="list-group">
