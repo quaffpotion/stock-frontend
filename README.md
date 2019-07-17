@@ -1,6 +1,6 @@
 # Todo
 
-[ ] search through material for cmd+space functionality
+- [ ] search through material for cmd+space functionality
 
 
 
