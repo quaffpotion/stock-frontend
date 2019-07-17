@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Observable, Subject, of, interval } from 'rxjs';
 import { tap, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { Stock } from './stock.model'
+import { MOCKDATA } from './mockdata';
+
+console.log(MOCKDATA)
 
 var json = require('../../data.json')
 console.log(json)

@@ -1,1 +1,8 @@
-{"a": 5, "b": 2}
+[
+    {"name": "Compnayasdfa", "symbol": "ASDF", "closingprice": 72.17},
+    {
+        "name": "Reasdf",
+        "symbol": "HKKS",
+        "closingprice": 6.17
+    }
+]
