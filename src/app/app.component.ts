@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Observable, Subject, of, interval } from 'rxjs';
 import { tap, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
+
+import { MatListModule } from '@angular/material/list';
+
 import { Stock } from './stock.model'
 import { MOCKDATA } from './mockdata';
 

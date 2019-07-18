@@ -17,3 +17,5 @@
 }
 
 to ./tsconfig.json and ./src/tsconfig.app.json)
+
+> npm install --save @angular/material @angular/cdk @angular/animations
