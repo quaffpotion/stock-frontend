@@ -2,12 +2,13 @@
   <h1>Welcome to {{ title }}!</h1>
 
   <input #searchBox id="search-box" (input)="pushSearchTerm(searchBox.value)" />
-  
+
   <mat-list>
     <mat-list-item class="search-result" *ngFor="let stock of stocks$ | async">
       <mat-icon mat-list-icon>trending_up</mat-icon>
-      {{ stock.name }} {{ stock.symbol }} {{ stock.closingprice }}
+      {{ stock.name }}
+      {{ stock.symbol }}
+      {{ stock.closingprice }}
     </mat-list-item>
   </mat-list>
-
 </div>

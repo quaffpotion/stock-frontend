@@ -1,59 +1,60 @@
-import { Component } from '@angular/core';
-import { Observable, Subject, of, interval } from 'rxjs';
-import { tap, switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators'
+import { Component } from "@angular/core";
+import { Observable, Subject, of, interval } from "rxjs";
+import {
+  tap,
+  switchMap,
+  debounceTime,
+  distinctUntilChanged
+} from "rxjs/operators";
 
+import { Stock } from "./stock.model";
+import { MOCKDATA } from "./mockdata";
 
-import { Stock } from './stock.model'
-import { MOCKDATA } from './mockdata';
+console.log(MOCKDATA);
 
-console.log(MOCKDATA)
-
-var json = require('../../data.json')
-console.log(json)
+var json = require("../../data.json");
+console.log(json);
 
 var mockdata = [
   new Stock("Tesla", "T", 176.27),
-  {name: "Apple", symbol: "AAPL", closingprice: 142.67},
-  {name: "Microsoft", symbol: "MSFT", closingprice: 71.82},
-  {name: "Planting Life Quality", symbol: "PLQ", closingprice: 91.71},
-  {name: "Max", symbol: "ZZZ", closingprice: 89.35}
-]
+  { name: "Apple", symbol: "AAPL", closingprice: 142.67 },
+  { name: "Microsoft", symbol: "MSFT", closingprice: 71.82 },
+  { name: "Planting Life Quality", symbol: "PLQ", closingprice: 91.71 },
+  { name: "Max", symbol: "ZZZ", closingprice: 89.35 }
+];
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-
-  stocks$: Observable<Stock[]>
-  private searchTerms = new Subject<string>()
+  stocks$: Observable<Stock[]>;
+  private searchTerms = new Subject<string>();
 
   pushSearchTerm(term: string) {
-
-    console.log("Pushing: " + term)
-    this.searchTerms.next(term)
-
+    console.log("Pushing: " + term);
+    this.searchTerms.next(term);
   }
 
   searchStocks(term: string): Observable<Stock[]> {
-
-    return of(mockdata.filter(item => (item.name.includes(term) || item.symbol.includes(term))))
-
+    return of(
+      term == ""
+        ? []
+        : mockdata.filter(
+            item => item.name.includes(term) || item.symbol.includes(term)
+          )
+    );
   }
 
   ngOnInit(): void {
-
     this.stocks$ = this.searchTerms.pipe(
       debounceTime(500),
       distinctUntilChanged(),
-      switchMap(
-        (term: string) => this.searchStocks(term)
-      ),
+      switchMap((term: string) => this.searchStocks(term)),
       tap(searchResult => console.log("stocks found: ", searchResult))
-    )
-
+    );
   }
 
-  title = 'stock-frontend';
+  title = "stock-frontend";
 }
