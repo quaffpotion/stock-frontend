@@ -1,10 +1,8 @@
 <div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+  <h1>Welcome to {{ title }}!</h1>
 
-  <input #searchBox id="search-box" (input)="pushSearchTerm(searchBox.value)"/>
-
+  <input #searchBox id="search-box" (input)="pushSearchTerm(searchBox.value)" />
+  
   <mat-list>
     <mat-list-item class="search-result" *ngFor="let stock of stocks$ | async">
       <mat-icon mat-list-icon>trending_up</mat-icon>
@@ -12,19 +10,4 @@
     </mat-list-item>
   </mat-list>
 
-
-  <ul >
-    <li *ngFor="let stock of stocks$ | async">
-      {{ stock.name }}
-    </li>
-  </ul>
 </div>
-
-
-<mat-list>
-  <mat-list-item *ngFor="let x of [1,2,3,4,5]">
-    <mat-icon mat-list-icon>folder</mat-icon>
-    <h4 mat-line>test</h4>
-    <p mat-line> {{"1/1/16" | date}} </p>
-  </mat-list-item>
-</mat-list>
