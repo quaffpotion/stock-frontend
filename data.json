@@ -1,8 +1,13 @@
 [
-    {"name": "Compnayasdfa", "symbol": "ASDF", "closingprice": 72.17},
-    {
-        "name": "Reasdf",
-        "symbol": "HKKS",
-        "closingprice": 6.17
-    }
+  { "name": "Mensk", "symbol": "MSK", "closingprice": 72.17 },
+  {
+    "name": "Readr",
+    "symbol": "RD",
+    "closingprice": 6.17
+  },
+  {
+    "name": "Union Road",
+    "symbol": "ROAD",
+    "closingprice": 0.89
+  }
 ]

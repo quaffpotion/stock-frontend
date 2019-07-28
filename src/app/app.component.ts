@@ -10,18 +10,19 @@ import {
 import { Stock } from "./stock.model";
 import { MOCKDATA } from "./mockdata";
 
-console.log(MOCKDATA);
+var json: Stock[] = require("../../data.json");
 
-var json = require("../../data.json");
-console.log(json);
-
-var mockdata = [
+var more_mockdata: Stock[] = [
   new Stock("Tesla", "T", 176.27),
   { name: "Apple", symbol: "AAPL", closingprice: 142.67 },
   { name: "Microsoft", symbol: "MSFT", closingprice: 71.82 },
   { name: "Planting Life Quality", symbol: "PLQ", closingprice: 91.71 },
   { name: "Max", symbol: "ZZZ", closingprice: 89.35 }
 ];
+
+var mockdata = [...MOCKDATA, ...more_mockdata, ...json]
+
+console.log(mockdata);
 
 @Component({
   selector: "app-root",
