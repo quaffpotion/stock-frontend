@@ -10,12 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { SearchStockComponent } from './search-stock/search-stock.component';
 import { SearchContainerComponent } from './search-container/search-container.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchStockComponent,
     SearchContainerComponent,
+    SearchResultComponent,
   ],
   //note, import order matters - must import after BrowserModule
   imports: [

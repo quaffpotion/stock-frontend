@@ -1,14 +1,44 @@
 <div style="text-align:center">
   <h1>Welcome to {{ title }}!</h1>
 
+  <div id="outer-grid">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div id="inner-grid">
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+    </div>
+  </div>
+
+  <div
+    style="padding: 20px; display:grid; grid-template-columns: 1fr 1fr 1fr 1fr"
+  >
+    <span>test</span><span>test</span><span>test</span><span>test</span>
+  </div>
+
   <input #searchBox id="search-box" (input)="pushSearchTerm(searchBox.value)" />
 
   <mat-list>
-    <mat-list-item class="search-result" *ngFor="let stock of stocks$ | async">
-      <mat-icon mat-list-icon>trending_up</mat-icon>
-      {{ stock.name }}
-      {{ stock.symbol }}
-      {{ stock.closingprice }}
+    <mat-list-item
+      style="background-color: paleturquoise; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr"
+      class="search-result"
+      *ngFor="let stock of stocks$ | async"
+    >
+      <span>
+        <mat-icon mat-list-icon>trending_up</mat-icon>
+      </span>
+      <span>
+        {{ stock.name }}
+      </span>
+      <span>
+        {{ stock.symbol }}
+      </span>
+      <span>
+        {{ stock.closingprice }}
+      </span>
     </mat-list-item>
   </mat-list>
 </div>
