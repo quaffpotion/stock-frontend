@@ -15,6 +15,11 @@
   place-content: center;
 }
 
+.mat-list-item-content {
+  background-color: red;
+}
+
+
 #outer-grid {
   display: grid;
   grid-template-rows: 1fr 1fr;
