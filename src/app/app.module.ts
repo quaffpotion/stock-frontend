@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { SearchStockComponent } from './search-stock/search-stock.component';
 import { SearchContainerComponent } from './search-container/search-container.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { TestDirective } from './test.directive';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
     SearchStockComponent,
     SearchContainerComponent,
     SearchResultComponent,
+    TestDirective,
   ],
   //note, import order matters - must import after BrowserModule
   imports: [
