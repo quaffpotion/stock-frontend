@@ -1,9 +1,8 @@
 # Todo
 
 - [ ] search through material for cmd+space functionality
-
-
-
+- ?? cannot bind console.log expression to event directive in angular template
+- ?? can console.log in ts file, cannot console.log \$event
 
 # StockFrontend
 

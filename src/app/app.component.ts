@@ -57,5 +57,10 @@ export class AppComponent {
     );
   }
 
+
+  mylogger() {
+    console.log("testing log")
+  }
+
   title = "stock-frontend";
 }
