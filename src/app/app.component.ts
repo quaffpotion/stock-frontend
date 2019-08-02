@@ -20,7 +20,7 @@ var more_mockdata: Stock[] = [
   { name: "Max", symbol: "ZZZ", closingprice: 89.35 }
 ];
 
-var mockdata = [...MOCKDATA, ...more_mockdata, ...json]
+var mockdata = [...MOCKDATA, ...more_mockdata, ...json];
 
 console.log(mockdata);
 
@@ -57,9 +57,8 @@ export class AppComponent {
     );
   }
 
-
-  mylogger() {
-    console.log("testing log")
+  mylogger(event) {
+    console.log(event);
   }
 
   title = "stock-frontend";

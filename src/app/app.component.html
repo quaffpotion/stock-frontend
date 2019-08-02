@@ -26,7 +26,11 @@
   <option value="C++"> </option>
 </datalist>
 
-<div tabindex="1" (click)="mylogger()" *ngFor="let stock of stocks$ | async">
+<div
+  tabindex="1"
+  (document:keydown.arrowdown)="mylogger($event)"
+  *ngFor="let stock of stocks$ | async"
+>
   {{ stock.symbol }}
 </div>
 
