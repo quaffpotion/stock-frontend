@@ -4,9 +4,12 @@
   id="search-box"
   (input)="pushSearchTerm(searchBox.value)"
 />
+
+<div *ngFor="let x of [1, 2, 3]" tabindex="1">testing tabindex</div>
 <mat-list>
   <div
-    style="background-color: paleturquoise; display: grid; grid-template-columns: 50px 200px 300px 50px"
+    tabindex="1"
+    style="padding: 10px; background-color: paleturquoise; display: grid; grid-template-columns: 50px 200px 300px 50px"
     class="search-result"
     *ngFor="let stock of stocks$ | async"
   >
