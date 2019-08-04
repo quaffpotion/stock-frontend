@@ -1,1 +1,34 @@
-<span>search container</span>
+<div class="search-bar-container">
+  <form class="search-bar">
+    <input
+      #searchBox
+      (input)="pushSearchTerm(searchBox.value)"
+      (focus)="onFocus(searchBox.value)"
+      (blur)="onBlur()"
+      class="search-input"
+      type="text"
+      placeholder="Search"
+      value=""
+      (keydown.arrowdown)="handleDown()"
+      (keydown.arrowup)="handleUp()"
+    />
+    <!-- We use [class.hidden-menu]="hidden" here instead of *ngIf="!hidden" so when the user
+    blurs the element and then refocuses with an old search term still in the search box they get
+  the result to appear instead of the result being pushed into the search terms observable but not being
+acknowledged. In a perfect world, refocusing would reload the searches regardless. -->
+    <ul class="search-results" [class.hidden-menu]="hidden">
+      <h4 class="search-result-label">Stocks</h4>
+
+      <li
+        *ngFor="let stock of stocks$ | async; let i = index"
+        class="search-result-item"
+        [class.selected]="i == selected"
+      >
+        <h4 class="search-athlete-team">
+          {{ stock.symbol }}
+        </h4>
+        <h4 class="search-athlete-name">{{ stock.name }}</h4>
+      </li>
+    </ul>
+  </form>
+</div>

@@ -1,9 +1,14 @@
 <input
+  style="grid-column-start: 1"
   #searchBox
   clickOutside
   id="search-box"
   (input)="pushSearchTerm(searchBox.value)"
 />
+
+<app-search-container
+  [mockdata]="mockdata"
+></app-search-container>
 
 <input
   type="text"
@@ -25,14 +30,6 @@
   <option value="C#"> </option>
   <option value="C++"> </option>
 </datalist>
-
-<div
-  tabindex="1"
-  (document:keydown.arrowdown)="mylogger($event)"
-  *ngFor="let stock of stocks$ | async"
->
-  {{ stock.symbol }}
-</div>
 
 <div *ngFor="let x of [1, 2, 3]" tabindex="1">testing tabindex</div>
 

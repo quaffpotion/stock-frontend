@@ -10,15 +10,13 @@
 :host {
   padding: 20px;
   display: grid;
-
   grid-gap: 20px;
-  place-content: center;
+  grid-template-columns: 1fr 1fr;
 }
 
 .mat-list-item-content {
   background-color: red;
 }
-
 
 #outer-grid {
   display: grid;

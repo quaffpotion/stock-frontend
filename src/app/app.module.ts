@@ -23,9 +23,9 @@ import { TestDirective } from './test.directive';
   ],
   //note, import order matters - must import after BrowserModule
   imports: [
-    BrowserModule, 
-    MatListModule, 
-    BrowserAnimationsModule, 
+    BrowserModule,
+    MatListModule,
+    BrowserAnimationsModule,
     MatIconModule,
   ],
   providers: [],

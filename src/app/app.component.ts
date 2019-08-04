@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { Observable, Subject, of, interval } from "rxjs";
+import { Component, OnInit } from "@angular/core";
+import { Observable, Subject, of } from "rxjs";
 import {
   tap,
   switchMap,
@@ -10,28 +10,28 @@ import {
 import { Stock } from "./stock.model";
 import { MOCKDATA } from "./mockdata";
 
-var json: Stock[] = require("../../data.json");
-
-var more_mockdata: Stock[] = [
-  new Stock("Tesla", "T", 176.27),
-  { name: "Apple", symbol: "AAPL", closingprice: 142.67 },
-  { name: "Microsoft", symbol: "MSFT", closingprice: 71.82 },
-  { name: "Planting Life Quality", symbol: "PLQ", closingprice: 91.71 },
-  { name: "Max", symbol: "ZZZ", closingprice: 89.35 }
-];
-
-var mockdata = [...MOCKDATA, ...more_mockdata, ...json];
-
-console.log(mockdata);
-
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  /*Create fake data from various sources*/
+  /*eventually made into a service*/
+  mockFromJson: Stock[] = require("../../data.json");
+  moreMockdata: Stock[] = [
+    new Stock("Tesla", "T", 176.27),
+    { name: "Apple", symbol: "AAPL", closingprice: 142.67 },
+    { name: "Microsoft", symbol: "MSFT", closingprice: 71.82 },
+    { name: "Planting Life Quality", symbol: "PLQ", closingprice: 91.71 },
+    { name: "Max", symbol: "ZZZ", closingprice: 89.35 }
+  ];
+  mockdata = [...MOCKDATA, ...this.moreMockdata, ...this.mockFromJson];
+
+  /*For searching functionality*/
   stocks$: Observable<Stock[]>;
-  private searchTerms = new Subject<string>();
+  searchTerms = new Subject<string>();
+  title = "stock-frontend";
 
   pushSearchTerm(term: string) {
     console.log("Pushing: " + term);
@@ -42,7 +42,7 @@ export class AppComponent {
     return of(
       term == ""
         ? []
-        : mockdata.filter(
+        : this.mockdata.filter(
             item => item.name.includes(term) || item.symbol.includes(term)
           )
     );
@@ -60,6 +60,4 @@ export class AppComponent {
   mylogger(event) {
     console.log(event);
   }
-
-  title = "stock-frontend";
 }
