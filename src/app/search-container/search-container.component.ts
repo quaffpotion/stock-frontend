@@ -24,11 +24,7 @@ export class SearchContainerComponent implements OnInit {
   @Input() mockdata: Stock[];
   searchTerms: Subject<string> = new Subject();
   stocks$: Observable<Stock[]>;
-  stocks: Stock[] = [
-    new Stock("WRN", "Warren", 67.11),
-    new Stock("BDN", "Biden", 87.17),
-    new Stock("BRNI", "Bernie", 45.12)
-  ];
+
   hidden = true;
   selected: number;
   listlength: number;

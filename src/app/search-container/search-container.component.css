@@ -124,5 +124,5 @@ input:-ms-input-placeholder {
 }
 
 .selected {
-  background-color: red;
+  background-color: #f5f5f5;
 }
