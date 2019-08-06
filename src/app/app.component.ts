@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 
+import { HighlightPipe } from "./highlight.pipe"
+
 import { Stock } from "./stock.model";
 import { MOCKDATA } from "./mockdata";
 

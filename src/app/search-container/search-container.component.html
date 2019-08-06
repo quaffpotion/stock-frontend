@@ -25,7 +25,7 @@ acknowledged. In a perfect world, refocusing would reload the searches regardles
         [class.selected]="i == selected"
       >
         <h4 class="search-athlete-team">
-          {{ stock.symbol }}
+          {{ stock.symbol | highlight: 'm' }}
         </h4>
         <h4 class="search-athlete-name">{{ stock.name }}</h4>
       </li>
