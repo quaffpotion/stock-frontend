@@ -8,18 +8,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { SearchStockComponent } from './search-stock/search-stock.component';
 import { SearchContainerComponent } from './search-container/search-container.component';
-import { SearchResultComponent } from './search-result/search-result.component';
 import { HighlightPipe } from './highlight.pipe';
 import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchStockComponent,
     SearchContainerComponent,
-    SearchResultComponent,
     HighlightPipe,
     SanitizeHtmlPipe
   ],

@@ -9,7 +9,6 @@ import { MOCKDATA } from './mockdata';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  scary = `<div style="color: red;">red text</div>`;
 
   /*Create fake data from various sources*/
   /*eventually made into a service*/
