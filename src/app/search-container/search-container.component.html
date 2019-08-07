@@ -24,10 +24,14 @@ acknowledged. In a perfect world, refocusing would reload the searches regardles
         class="search-result-item"
         [class.selected]="i == selected"
       >
-        <h4 class="search-athlete-team">
-          {{ stock.symbol | highlight: 'm' }}
-        </h4>
-        <h4 class="search-athlete-name">{{ stock.name }}</h4>
+        <h4
+          [innerHTML]="stock.symbol | highlight: searchBox.value"
+          class="search-athlete-team"
+        ></h4>
+        <h4
+          [innerHTML]="stock.name | highlight: searchBox.value"
+          class="search-athlete-name"
+        ></h4>
       </li>
     </ul>
   </form>
