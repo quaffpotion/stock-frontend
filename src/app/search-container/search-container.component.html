@@ -25,11 +25,11 @@ acknowledged. In a perfect world, refocusing would reload the searches regardles
         [class.selected]="i == selected"
       >
         <h4
-          [innerHTML]="stock.symbol | highlight: searchBox.value"
+          [innerHTML]="stock.symbol | highlight: searchBox.value | sanitizeHtml"
           class="search-athlete-team"
         ></h4>
         <h4
-          [innerHTML]="stock.name | highlight: searchBox.value"
+          [innerHTML]="stock.name | highlight: searchBox.value | sanitizeHtml"
           class="search-athlete-name"
         ></h4>
       </li>

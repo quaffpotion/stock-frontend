@@ -1,31 +1,55 @@
 import { PipeTransform, Pipe } from '@angular/core';
 
-// @Pipe({ name: 'highlight' })
-// export class HighlightPipe implements PipeTransform {
-//   transform(text: string, search): string {
-//     return search
-//       ? text.replace(
-//           new RegExp(search, 'i'),
-//           `<span style="color: red;">${search}</span>`
-//         )
-//       : text;
-//   }
-// }
-
 @Pipe({ name: 'highlight' })
 export class HighlightPipe implements PipeTransform {
   transform(text: string, search): string {
+    var pattern = search.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+    pattern = pattern
+      .split(' ')
+      .filter(t => {
+        return t.length > 0;
+      })
+      .join('|');
+    var regex = new RegExp(pattern, 'gi');
+
     return search
-      ? text.replace(new RegExp(search, 'i'), `--${search}--`)
+      ? text.replace(
+          regex,
+          match =>
+            `<span style="color: green; font-weight: bold;">${match}</span>`
+        )
       : text;
   }
 }
 
 // @Pipe({ name: 'highlight' })
 // export class HighlightPipe implements PipeTransform {
-//   transform(text: string, [search]): string {
-//     let s = 'CatDogCAT';
-//     let re = new RegExp('cat', 'gi');
+//   transform(text: string, search): string {
+//     return search
+//       ? text.replace(
+//           new RegExp(search, 'i'),
+//           `<span style="color: green; font-weight: bold;">${search}</span>`
+//         )
+//       : text;
+//   }
+// }
+
+// @Pipe({ name: 'highlight' })
+// export class HighlightPipe implements PipeTransform {
+//   transform(text: string, search): string {
+//     return search
+//       ? text.replace(new RegExp(search, 'i'), `--${search}--`)
+//       : text;
+//   }
+// }
+
+// works with 'm' ... but not 'o'?
+// @Pipe({ name: 'highlight' })
+// export class HighlightPipe implements PipeTransform {
+//   transform(text: string, term: string): string {
+//     console.group('Finding `' + term + '` in `' + text + '`:');
+//     let s = text;
+//     let re = new RegExp(term, 'gi');
 //     let matches = [...s.matchAll(re)].reverse();
 //     let el = document.createElement('div');
 //     el.style.display = 'inline';
@@ -38,12 +62,13 @@ export class HighlightPipe implements PipeTransform {
 //         y.style.fontWeight = 'bold';
 //         el.appendChild(y);
 //       } else {
-//         let z = document.createElement('span');
-//         z.textContent = x;
+//         let z = document.createTextNode(x);
 //         el.appendChild(z);
 //       }
 //     });
-//     return `<span style="color: green; font - weight: bold; ">Cat</span><span>Dog</span><span style="color: green; font - weight: bold;">CAT</span>`;
+//     console.log(el.innerHTML);
+//     console.groupEnd();
+//     return el.innerHTML;
 //   }
 // }
 
