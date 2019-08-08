@@ -4,14 +4,14 @@ import {
   Output,
   EventEmitter,
   HostListener
-} from "@angular/core";
+} from '@angular/core';
 
 @Directive({
-  selector: "[clickOutside]"
+  selector: '[appTest]'
 })
 export class TestDirective {
   constructor(private _elementRef: ElementRef) {}
-  @HostListener("document:click", ["$event.target"])
+  @HostListener('document:click', ['$event.target'])
   public onClick(targetElement) {
     console.log(this._elementRef.nativeElement.contains(targetElement));
   }

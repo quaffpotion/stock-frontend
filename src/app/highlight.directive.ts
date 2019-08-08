@@ -1,20 +1,29 @@
-import { Directive, ElementRef, Input, OnChanges, SimpleChanges, AfterViewInit, AfterViewChecked } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  AfterViewInit,
+  AfterViewChecked
+} from '@angular/core';
 
 @Directive({
   selector: '[highlight]'
 })
-export class HighlightDirective implements OnChanges, AfterViewInit, AfterViewChecked {
-
+export class HighlightDirective
+  implements OnChanges, AfterViewInit, AfterViewChecked {
   @Input('highlight') searchTerm = undefined;
   @Input() caseSensitive = true;
 
   private viewRendered = false;
   private WRAPPER_TOKEN = '==--==##';
 
-  private get caseSensitivity(): string { return this.caseSensitive ? '' : 'i'; }
+  private get caseSensitivity(): string {
+    return this.caseSensitive ? '' : 'i';
+  }
 
-
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.highlightSearchTerm();
@@ -26,8 +35,8 @@ export class HighlightDirective implements OnChanges, AfterViewInit, AfterViewCh
 
   ngAfterViewChecked(): void {
     this.viewRendered = true;
+    console.log(this.searchTerm);
   }
-
 
   highlightSearchTerm() {
     // initial ngChage call will result with null \ undefined.
@@ -52,18 +61,29 @@ export class HighlightDirective implements OnChanges, AfterViewInit, AfterViewCh
     const _searchTermUniqueTokens = this.getUniqueTokenWrappedSearchTerm();
     const searchRegexUniqueTokens = new RegExp(_searchTermUniqueTokens, 'gmi');
     this.traverseHtmlElementsTree(htmlNode, e => {
-      this.traverseNodesInElement(htmlNode.childNodes, node => this.wrapUniqueTokensAroundMatchedText(node, searchRegex));
+      this.traverseNodesInElement(htmlNode.childNodes, node =>
+        this.wrapUniqueTokensAroundMatchedText(node, searchRegex)
+      );
     });
 
-    this.markMatchedTextAndRemoveUniqueTokens(htmlNode, searchRegexUniqueTokens);
+    this.markMatchedTextAndRemoveUniqueTokens(
+      htmlNode,
+      searchRegexUniqueTokens
+    );
   }
 
-  private markMatchedTextAndRemoveUniqueTokens(htmlNode: HTMLElement, searchRegex: RegExp) {
+  private markMatchedTextAndRemoveUniqueTokens(
+    htmlNode: HTMLElement,
+    searchRegex: RegExp
+  ) {
     if (htmlNode.innerHTML) {
       const innerHtml = htmlNode.innerHTML;
       const newHtml = innerHtml.replace(searchRegex, match => {
         const wrapperLength = this.WRAPPER_TOKEN.length;
-        const markedStr = match.substr(wrapperLength, match.length - (wrapperLength * 2));
+        const markedStr = match.substr(
+          wrapperLength,
+          match.length - wrapperLength * 2
+        );
         return `<mark>${markedStr}</mark>`;
       });
 
@@ -71,7 +91,10 @@ export class HighlightDirective implements OnChanges, AfterViewInit, AfterViewCh
     }
   }
 
-  private traverseNodesInElement(nodes: NodeList, visitCallback: (node: Node) => any) {
+  private traverseNodesInElement(
+    nodes: NodeList,
+    visitCallback: (node: Node) => any
+  ) {
     for (let i = 0; i < nodes.length; i++) {
       const node = nodes[i];
       if (node.nodeType === 3) {
@@ -80,13 +103,22 @@ export class HighlightDirective implements OnChanges, AfterViewInit, AfterViewCh
     }
   }
 
-  private wrapUniqueTokensAroundMatchedText(htmlNode: Node, searchRegex: RegExp) {
+  private wrapUniqueTokensAroundMatchedText(
+    htmlNode: Node,
+    searchRegex: RegExp
+  ) {
     const innerText = htmlNode.nodeValue;
-    const newText = innerText.replace(searchRegex, `${this.WRAPPER_TOKEN}$&${this.WRAPPER_TOKEN}`);
+    const newText = innerText.replace(
+      searchRegex,
+      `${this.WRAPPER_TOKEN}$&${this.WRAPPER_TOKEN}`
+    );
     htmlNode.nodeValue = newText;
   }
 
-  private traverseHtmlElementsTree(currentNode: HTMLElement, visitCallback: (node: HTMLElement) => any) {
+  private traverseHtmlElementsTree(
+    currentNode: HTMLElement,
+    visitCallback: (node: HTMLElement) => any
+  ) {
     if (currentNode) {
       visitCallback(currentNode);
     }
@@ -99,7 +131,7 @@ export class HighlightDirective implements OnChanges, AfterViewInit, AfterViewCh
 
   private removePreviouslyMarkedTextInNode() {
     const node = this.el.nativeElement;
-    const markingPattern = new RegExp('<mark>|<\/mark>', 'g');
+    const markingPattern = new RegExp('<mark>|</mark>', 'g');
     const cleanText = node.innerHTML.replace(markingPattern, '');
     node.innerHTML = cleanText;
   }
@@ -123,12 +155,17 @@ export class HighlightDirective implements OnChanges, AfterViewInit, AfterViewCh
   private getUniqueTokenWrappedSearchTerm() {
     let escapedSearchTerm = this.escapeRegExp(this.searchTerm);
     const spaceToMultiMatchRegex = new RegExp(' ', 'gm');
-    escapedSearchTerm = escapedSearchTerm.replace(spaceToMultiMatchRegex, `${this.WRAPPER_TOKEN}|${this.WRAPPER_TOKEN}`);
-    escapedSearchTerm = `${this.WRAPPER_TOKEN}${escapedSearchTerm}${this.WRAPPER_TOKEN}`;
+    escapedSearchTerm = escapedSearchTerm.replace(
+      spaceToMultiMatchRegex,
+      `${this.WRAPPER_TOKEN}|${this.WRAPPER_TOKEN}`
+    );
+    escapedSearchTerm = `${this.WRAPPER_TOKEN}${escapedSearchTerm}${
+      this.WRAPPER_TOKEN
+    }`;
     return escapedSearchTerm;
   }
 
   private escapeRegExp(str) {
-    return str.replace('/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g', '\\$&');
+    return str.replace('/[-[]/{}()*+?.\\^$|]/g', '\\$&');
   }
 }

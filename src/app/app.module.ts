@@ -7,6 +7,7 @@ import { SearchContainerComponent } from './search-container/search-container.co
 import { HighlightPipe } from './highlight.pipe';
 import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 import { HighlightDirective } from './highlight.directive';
+import { TestDirective } from './test.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { HighlightDirective } from './highlight.directive';
     SearchContainerComponent,
     HighlightPipe,
     SanitizeHtmlPipe,
-    HighlightDirective
+    HighlightDirective,
+    TestDirective
   ],
   //note, import order matters - must import after BrowserModule
   imports: [BrowserModule, FormsModule],

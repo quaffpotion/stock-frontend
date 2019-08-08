@@ -27,10 +27,12 @@ acknowledged. In a perfect world, refocusing would reload the searches regardles
         <h4
           [innerHTML]="stock.symbol | highlight: searchBox.value | sanitizeHtml"
           class="search-athlete-team"
+          [highlight]="'MS'"
         ></h4>
         <h4
           [innerHTML]="stock.name | highlight: searchBox.value | sanitizeHtml"
           class="search-athlete-name"
+          [highlight]="'soft'"
         ></h4>
       </li>
     </ul>
