@@ -43,7 +43,9 @@ export class SearchContainerComponent implements OnInit {
       term == ''
         ? []
         : this.mockdata.filter(
-            item => item.name.includes(term) || item.symbol.includes(term)
+            item =>
+              item.name.toLowerCase().includes(term.toLowerCase()) ||
+              item.symbol.toLowerCase().includes(term.toLowerCase())
           );
     this.listlength = result.length;
     return of(result);
