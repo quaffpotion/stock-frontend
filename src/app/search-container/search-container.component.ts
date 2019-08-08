@@ -22,6 +22,7 @@ import {
 })
 export class SearchContainerComponent implements OnInit {
   @Input() mockdata: Stock[];
+  searchTerm: string;
   searchTerms: Subject<string> = new Subject();
   stocks$: Observable<Stock[]>;
 
@@ -50,8 +51,8 @@ export class SearchContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.stocks$ = this.searchTerms.pipe(
-      debounceTime(500),
-      distinctUntilChanged(),
+      //debounceTime(500),
+      //distinctUntilChanged(),
       switchMap((term: string) => this.searchStocks(term)),
       tap(searchResult => console.log('stocks found: ', searchResult))
     );
