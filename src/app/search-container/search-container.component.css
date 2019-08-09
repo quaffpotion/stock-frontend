@@ -117,8 +117,6 @@ input:-ms-input-placeholder {
   background-color: #f5f5f5;
 }
 
-/*******/
-
 .hidden-menu {
   display: none;
 }
@@ -127,8 +125,7 @@ input:-ms-input-placeholder {
   background-color: #f5f5f5;
 }
 
-/* h4 span should be specific enough to get away with only using none encapsulation*/
-h4 span {
+#searched-text > span {
   color: green;
   font-weight: bold;
 }
