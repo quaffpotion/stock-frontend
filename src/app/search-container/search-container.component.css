@@ -28,7 +28,7 @@ input:-ms-input-placeholder {
   color: #e4e4e4;
   font-size: 13px;
   border: none;
-  font-family: "Noto Sans", sans-serif;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 .search-bar-container {
@@ -81,7 +81,7 @@ input:-ms-input-placeholder {
   border: none;
 }
 .search-athlete-team {
-  font-family: "Noto Sans", sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   font-size: 15px;
   margin-top: 0px;
   width: 60px;
@@ -90,7 +90,7 @@ input:-ms-input-placeholder {
 }
 
 .search-athlete-name {
-  font-family: "Noto Sans", sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   font-size: 15px;
   margin-top: 0px;
   margin-left: 20px;
@@ -99,7 +99,7 @@ input:-ms-input-placeholder {
 
 .search-result-label {
   margin-top: 65px;
-  font-family: "Noto Sans", sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   color: lightgray;
   font-size: 15px;
   padding-left: 10px;
@@ -125,4 +125,10 @@ input:-ms-input-placeholder {
 
 .selected {
   background-color: #f5f5f5;
+}
+
+/* h4 span should be specific enough to get away with only using none encapsulation*/
+h4 span {
+  color: green;
+  font-weight: bold;
 }

@@ -17,7 +17,8 @@ export class HighlightDirective
   @Input() caseSensitive = true;
 
   private viewRendered = false;
-  private WRAPPER_TOKEN = '==--==##';
+  private WRAPPER_TOKEN = '###';
+  private TAG = 'mark';
 
   private get caseSensitivity(): string {
     return this.caseSensitive ? '' : 'i';
@@ -84,7 +85,8 @@ export class HighlightDirective
           wrapperLength,
           match.length - wrapperLength * 2
         );
-        return `<mark>${markedStr}</mark>`;
+        return `<span>${markedStr}</span>`;
+        //return `<span style="color:green; font-weight:bold">${match}</span>`;
       });
 
       htmlNode.innerHTML = newHtml;
@@ -131,7 +133,11 @@ export class HighlightDirective
 
   private removePreviouslyMarkedTextInNode() {
     const node = this.el.nativeElement;
-    const markingPattern = new RegExp('<mark>|</mark>', 'g');
+    const markingPattern = new RegExp('<span>|</span>', 'g');
+    /*const markingPattern = new RegExp(
+      this.escapeRegExp('<span style="color:green; font-weight:bold">|</span>'),
+      'g'
+    );*/
     const cleanText = node.innerHTML.replace(markingPattern, '');
     node.innerHTML = cleanText;
   }

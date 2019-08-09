@@ -4,7 +4,8 @@ import {
   Input,
   ViewChild,
   ElementRef,
-  AfterViewInit
+  AfterViewInit,
+  ViewEncapsulation
 } from '@angular/core';
 import { Stock } from '../stock.model';
 import { Observable, of, Subject } from 'rxjs';
@@ -18,7 +19,8 @@ import {
 @Component({
   selector: 'app-search-container',
   templateUrl: './search-container.component.html',
-  styleUrls: ['./search-container.component.css']
+  styleUrls: ['./search-container.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SearchContainerComponent implements OnInit {
   @Input() mockdata: Stock[];
@@ -65,7 +67,7 @@ export class SearchContainerComponent implements OnInit {
     this.hidden = false;
   }
   onBlur() {
-    this.hidden = true;
+    //this.hidden = true;
   }
   handleDown() {
     this.selected = this.customMod(this.selected + 1, this.listlength);
