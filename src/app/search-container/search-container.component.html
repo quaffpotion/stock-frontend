@@ -1,7 +1,6 @@
 <div class="search-bar-container">
   <form class="search-bar">
     <input
-      #searchBox
       (input)="pushSearchTerm()"
       (focus)="onFocus()"
       (blur)="onBlur()"
@@ -14,7 +13,6 @@
       [(ngModel)]="filterString"
       name="filter"
     />
-    <span class="highlight">asdfasdfasdfasdf</span>
     <!-- We use [class.hidden-menu]="hidden" here instead of *ngIf="!hidden" so when the user
     blurs the element and then refocuses with an old search term still in the search box they get
   the result to appear instead of the result being pushed into the search terms observable but not being
@@ -37,27 +35,5 @@ acknowledged. In a perfect world, refocusing would reload the searches regardles
         ></h4>
       </li>
     </ul>
-    <!-- -
-    <ul class="search-results" [class.hidden-menu]="hidden">
-      <h4 class="search-result-label">Stocks</h4>
-      <li
-        *ngFor="let stock of stocks$ | async; let i = index"
-        class="search-result-item"
-        [class.selected]="i == selected"
-      >
-        <h4
-          [innerHTML]="stock.symbol"
-          class="search-athlete-team"
-          [highlight]="searchBox.value"
-          id="searched-text"
-        ></h4>
-        <h4
-          [innerHTML]="stock.name"
-          class="search-athlete-name"
-          [highlight]="searchBox.value"
-          id="searched-text"
-        ></h4>
-      </li>
-    </ul> -->
   </form>
 </div>

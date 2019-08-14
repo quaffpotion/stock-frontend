@@ -5,8 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SearchContainerComponent } from './search-container/search-container.component';
 import { HighlightPipe } from './highlight.pipe';
-import { SanitizeHtmlPipe } from './sanitize-html.pipe';
-import { HighlightDirective } from './highlight.directive';
 import { TestDirective } from './test.directive';
 
 @NgModule({
@@ -14,8 +12,6 @@ import { TestDirective } from './test.directive';
     AppComponent,
     SearchContainerComponent,
     HighlightPipe,
-    SanitizeHtmlPipe,
-    HighlightDirective,
     TestDirective
   ],
   //note, import order matters - must import after BrowserModule

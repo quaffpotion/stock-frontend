@@ -1,8 +1,10 @@
 # Todo
 
 - [ ] add enter key to select from search results
-- [ ] add esc key to remove results
+- [ ] add esc key to remove results and stop searching
 - [ ] add mouseover to change selection
+- [ ] disable browser autocomplete in input form
+- [ ] refactor: stock-search input element uses click and input bindings to generate an observable of search terms; change this to the observable from angular's FormControl. (May need to combine this with a click observable to keep the functionality where a search is resent when user refocuses)
 
 # StockFrontend
 

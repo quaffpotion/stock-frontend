@@ -1,12 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  ViewChild,
-  ElementRef,
-  AfterViewInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Stock } from '../stock.model';
 import { Observable, of, Subject } from 'rxjs';
 import {
@@ -20,7 +12,6 @@ import {
   selector: 'app-search-container',
   templateUrl: './search-container.component.html',
   styleUrls: ['./search-container.component.css']
-  //encapsulation: ViewEncapsulation.ShadowDom
 })
 export class SearchContainerComponent implements OnInit {
   @Input() mockdata: Stock[];
@@ -57,8 +48,9 @@ export class SearchContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.stocks$ = this.searchTerms.pipe(
-      //debounceTime(500),
-      //distinctUntilChanged(),
+      //notice: Angular will update the highlighting before grabbing new searches
+      debounceTime(200),
+      distinctUntilChanged(),
       switchMap((term: string) => this.searchStocks(term)),
       tap(searchResult => console.log('stocks found: ', searchResult))
     );
@@ -69,7 +61,7 @@ export class SearchContainerComponent implements OnInit {
     this.hidden = false;
   }
   onBlur() {
-    //this.hidden = true;
+    this.hidden = true;
   }
   handleDown() {
     this.selected = this.customMod(this.selected + 1, this.listlength);
