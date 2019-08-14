@@ -19,8 +19,8 @@ import {
 @Component({
   selector: 'app-search-container',
   templateUrl: './search-container.component.html',
-  styleUrls: ['./search-container.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./search-container.component.css']
+  //encapsulation: ViewEncapsulation.ShadowDom
 })
 export class SearchContainerComponent implements OnInit {
   @Input() mockdata: Stock[];
@@ -28,15 +28,17 @@ export class SearchContainerComponent implements OnInit {
   searchTerms: Subject<string> = new Subject();
   stocks$: Observable<Stock[]>;
 
+  filterString: string = '';
+
   hidden = true;
   selected: number;
   listlength: number;
 
   constructor() {}
 
-  pushSearchTerm(term: string) {
-    console.log('Pushing: ' + term);
-    this.searchTerms.next(term);
+  pushSearchTerm() {
+    console.log('Pushing: ', this.filterString);
+    this.searchTerms.next(this.filterString);
   }
 
   searchStocks(term: string): Observable<Stock[]> {
@@ -62,8 +64,8 @@ export class SearchContainerComponent implements OnInit {
     );
   }
 
-  onFocus(value: string) {
-    this.pushSearchTerm(value);
+  onFocus() {
+    this.pushSearchTerm();
     this.hidden = false;
   }
   onBlur() {

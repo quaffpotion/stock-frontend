@@ -2,8 +2,8 @@
   <form class="search-bar">
     <input
       #searchBox
-      (input)="pushSearchTerm(searchBox.value)"
-      (focus)="onFocus(searchBox.value)"
+      (input)="pushSearchTerm()"
+      (focus)="onFocus()"
       (blur)="onBlur()"
       class="search-input"
       type="text"
@@ -11,7 +11,10 @@
       value=""
       (keydown.arrowdown)="handleDown()"
       (keydown.arrowup)="handleUp($event)"
+      [(ngModel)]="filterString"
+      name="filter"
     />
+    <span class="highlight">asdfasdfasdfasdf</span>
     <!-- We use [class.hidden-menu]="hidden" here instead of *ngIf="!hidden" so when the user
     blurs the element and then refocuses with an old search term still in the search box they get
   the result to appear instead of the result being pushed into the search terms observable but not being
@@ -25,15 +28,16 @@ acknowledged. In a perfect world, refocusing would reload the searches regardles
         [class.selected]="i == selected"
       >
         <h4
-          [innerHTML]="stock.symbol | highlight: searchBox.value | sanitizeHtml"
+          [innerHTML]="stock.symbol | highlight: filterString"
           class="search-athlete-team"
         ></h4>
         <h4
-          [innerHTML]="stock.name | highlight: searchBox.value | sanitizeHtml"
+          [innerHTML]="stock.name | highlight: filterString"
           class="search-athlete-name"
         ></h4>
       </li>
     </ul>
+    <!-- -
     <ul class="search-results" [class.hidden-menu]="hidden">
       <h4 class="search-result-label">Stocks</h4>
       <li
@@ -54,6 +58,6 @@ acknowledged. In a perfect world, refocusing would reload the searches regardles
           id="searched-text"
         ></h4>
       </li>
-    </ul>
+    </ul> -->
   </form>
 </div>

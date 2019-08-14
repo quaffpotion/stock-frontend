@@ -1,8 +1,8 @@
 # Todo
+
 - [ ] add enter key to select from search results
 - [ ] add esc key to remove results
 - [ ] add mouseover to change selection
-
 
 # StockFrontend
 
