@@ -19,7 +19,7 @@ export class SearchContainerComponent implements OnInit {
   searchTerms: Subject<string> = new Subject();
   stocks$: Observable<Stock[]>;
 
-  filterString: string = '';
+  filterString = '';
 
   hidden = true;
   selected: number;

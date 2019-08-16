@@ -12,6 +12,7 @@
       (keydown.arrowup)="handleUp($event)"
       [(ngModel)]="filterString"
       name="filter"
+      autocomplete="off"
     />
     <!-- We use [class.hidden-menu]="hidden" here instead of *ngIf="!hidden" so when the user
     blurs the element and then refocuses with an old search term still in the search box they get
