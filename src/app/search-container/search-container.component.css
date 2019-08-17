@@ -1,7 +1,3 @@
-:host {
-  grid-column-start: 2;
-}
-
 input::-webkit-input-placeholder {
   color: #e4e4e4 !important;
 }
@@ -42,7 +38,7 @@ input:-ms-input-placeholder {
   width: 433px;
   overflow: hidden;
 
-  position: relative; /*fixed*/
+  position: fixed;
   top: 0;
   left: 120px;
   margin-top: 10px;

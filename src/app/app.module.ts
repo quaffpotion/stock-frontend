@@ -5,14 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SearchContainerComponent } from './search-container/search-container.component';
 import { HighlightPipe } from './highlight.pipe';
-import { TestDirective } from './test.directive';
+import { DisplayAreaComponent } from './display-area/display-area.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchContainerComponent,
     HighlightPipe,
-    TestDirective
+    DisplayAreaComponent
   ],
   //note, import order matters - must import after BrowserModule
   imports: [BrowserModule, FormsModule],
