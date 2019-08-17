@@ -26,5 +26,22 @@ export class AppComponent implements AfterContentInit {
     d3.csv('http://localhost:4200/assets/FTSE.csv').then(data =>
       console.log(data)
     );
+    this.loadScripts();
+  }
+
+  loadScripts() {
+    const dynamicScripts = [
+      'https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js',
+      'https://d3js.org/d3.v5.min.js',
+      'http://localhost:4200/assets/script.js'
+    ];
+    for (let i = 0; i < dynamicScripts.length; i++) {
+      const node = document.createElement('script');
+      node.src = dynamicScripts[i];
+      node.type = 'text/javascript';
+      node.async = false;
+      node.charset = 'utf-8';
+      document.getElementsByTagName('head')[0].appendChild(node);
+    }
   }
 }
