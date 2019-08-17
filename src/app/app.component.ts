@@ -11,7 +11,7 @@ import * as d3 from 'd3';
 })
 export class AppComponent implements AfterContentInit {
   /*Create fake data from various sources*/
-  /*eventually made into a service*/
+  /*eventually make into a service*/
   mockFromJson: Stock[] = require('../../data.json');
   moreMockdata: Stock[] = [
     new Stock('Tesla', 'T', 176.27),
