@@ -23,6 +23,8 @@ export class AppComponent implements AfterContentInit {
   mockdata = [...MOCKDATA, ...this.moreMockdata, ...this.mockFromJson];
 
   ngAfterContentInit() {
-    console.log(d3.select('div'));
+    d3.csv('http://localhost:4200/assets/FTSE.csv').then(data =>
+      console.log(data)
+    );
   }
 }
