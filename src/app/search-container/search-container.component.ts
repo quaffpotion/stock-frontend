@@ -70,6 +70,9 @@ export class SearchContainerComponent implements OnInit {
     e.preventDefault(); //default behavior puts cursor at beginning of input box
     this.selected = this.customMod(this.selected - 1, this.listlength);
   }
+  handleEnter() {
+    console.log('enter key', this.selected);
+  }
 
   customMod(x, n) {
     return ((x % n) + n) % n;

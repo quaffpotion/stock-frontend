@@ -10,6 +10,7 @@
       value=""
       (keydown.arrowdown)="handleDown()"
       (keydown.arrowup)="handleUp($event)"
+      (keydown.enter)="handleEnter()"
       [(ngModel)]="filterString"
       name="filter"
       autocomplete="off"
