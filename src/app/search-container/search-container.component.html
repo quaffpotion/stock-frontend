@@ -1,3 +1,11 @@
+<div *ngFor = "let s of detailStocks">name: {{ s.name }}</div>
+<div>
+    
+    selected: <pre>{{ selected$ | async }}</pre>
+selectedStock: <pre>{{ (selectedStock$ | async) | json }}</pre>
+stocks: <pre>{{ (stocks$ | async) | json }}</pre>
+</div>
+
 <div class="search-bar-container">
   <form class="search-bar">
     <input
@@ -10,10 +18,10 @@
       value=""
       (keydown.arrowdown)="handleDown()"
       (keydown.arrowup)="handleUp($event)"
-      (keydown.enter)="handleEnter()"
       [(ngModel)]="filterString"
       name="filter"
       autocomplete="off"
+      (keydown.enter)="handleEnter(stock)"
     />
     <!-- We use [class.hidden-menu]="hidden" here instead of *ngIf="!hidden" so when the user
     blurs the element and then refocuses with an old search term still in the search box they get
