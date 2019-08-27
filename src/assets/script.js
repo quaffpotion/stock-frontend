@@ -1,5 +1,5 @@
 function drawChart() {
-  d3.csv('http://localhost:4200/assets/FTSE.csv').then(function(prices) {
+  d3.csv('http://localhost:8080/assets/FTSE.csv').then(function(prices) {
     const months = {
       0: 'Jan',
       1: 'Feb',

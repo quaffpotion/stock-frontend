@@ -14,7 +14,6 @@ interface DataModel {
   frequency: number;
 }
 
-
 @Component({
   selector: 'app-candlestick-chart',
   templateUrl: './candlestick-chart.component.html',
@@ -28,11 +27,11 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
   @Input()
   data: DataModel[];
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
-  constructor() { }
+  constructor() {}
 
   ngOnChanges(): void {
     if (!this.data) {
@@ -41,6 +40,8 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
 
     this.createChart();
   }
+
+  onResize(e: Event) {}
 
   private createChart(): void {
     d3.select('svg').remove();
