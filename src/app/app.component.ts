@@ -3,6 +3,13 @@ import { Component, AfterContentInit } from '@angular/core';
 import { Stock } from './stock.model';
 import { MOCKDATA } from './mockdata';
 import * as d3 from 'd3';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+interface DataModel {
+  letter: string;
+  frequency: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -10,6 +17,8 @@ import * as d3 from 'd3';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterContentInit {
+  data: Observable<DataModel>;
+
   /*Create fake data from various sources*/
   /*eventually make into a service*/
   mockFromJson: Stock[] = require('../../data.json');
@@ -22,8 +31,12 @@ export class AppComponent implements AfterContentInit {
   ];
   mockdata = [...MOCKDATA, ...this.moreMockdata, ...this.mockFromJson];
 
+  constructor(private http: HttpClient) {
+    this.data = this.http.get<DataModel>('./assets/data.json');
+  }
+
   ngAfterContentInit() {
-    d3.csv('http://localhost:4200/assets/FTSE.csv').then(data =>
+    d3.csv('http://localhost:8080/assets/FTSE.csv').then(data =>
       console.log(data)
     );
     this.loadScripts();
@@ -33,7 +46,7 @@ export class AppComponent implements AfterContentInit {
     const dynamicScripts = [
       'https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js',
       'https://d3js.org/d3.v5.min.js',
-      'http://localhost:4200/assets/script.js'
+      'http://localhost:8080/assets/script.js'
     ];
     for (let i = 0; i < dynamicScripts.length; i++) {
       const node = document.createElement('script');
