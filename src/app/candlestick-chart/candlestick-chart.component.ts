@@ -41,7 +41,9 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
     this.createChart();
   }
 
-  onResize(e: Event) {}
+  onResize(e: Event) {
+    this.createChart();
+  }
 
   private createChart(): void {
     d3.select('svg').remove();
@@ -54,6 +56,8 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
       .append('svg')
       .attr('width', element.offsetWidth)
       .attr('height', element.offsetHeight);
+
+    console.log(element);
 
     const contentWidth =
       element.offsetWidth - this.margin.left - this.margin.right;

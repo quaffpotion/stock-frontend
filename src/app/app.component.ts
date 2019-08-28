@@ -4,6 +4,7 @@ import { Stock } from './stock.model';
 import { MOCKDATA } from './mockdata';
 import * as d3 from 'd3';
 import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 interface DataModel {
@@ -18,6 +19,7 @@ interface DataModel {
 })
 export class AppComponent implements AfterContentInit {
   data: Observable<DataModel>;
+  count: any = 0;
 
   /*Create fake data from various sources*/
   /*eventually make into a service*/
@@ -32,7 +34,9 @@ export class AppComponent implements AfterContentInit {
   mockdata = [...MOCKDATA, ...this.moreMockdata, ...this.mockFromJson];
 
   constructor(private http: HttpClient) {
-    this.data = this.http.get<DataModel>('./assets/data.json');
+    this.data = this.http
+      .get<DataModel>('./assets/data.json')
+      .pipe(delay(3000 * this.count++));
   }
 
   ngAfterContentInit() {
