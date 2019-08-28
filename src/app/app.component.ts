@@ -33,11 +33,11 @@ export class AppComponent implements AfterContentInit {
   ];
   mockdata = [...MOCKDATA, ...this.moreMockdata, ...this.mockFromJson];
 
-  constructor(private http: HttpClient) {
-    this.data = this.http
-      .get<DataModel>('./assets/data.json')
-      .pipe(delay(3000 * this.count++));
-  }
+  // constructor(private http: HttpClient) {
+  //   this.data = this.http
+  //     .get<DataModel>('./assets/data.json')
+  //     .pipe(delay(3000 * this.count++));
+  // }
 
   ngAfterContentInit() {
     d3.csv('http://localhost:8080/assets/FTSE.csv').then(data =>
