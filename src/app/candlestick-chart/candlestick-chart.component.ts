@@ -158,9 +158,10 @@ export class CandlestickChartComponent
   }
 
   private createChart(): void {
-    //d3.select('svg').remove();
-
     const element = this.chartContainer.nativeElement;
+    d3.select(element)
+      .select('svg')
+      .remove();
     const data = this.data2;
     const svg = d3
       .select(element)
