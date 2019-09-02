@@ -157,6 +157,18 @@ export class CandlestickChartComponent
     this.createChart();
   }
 
+  onClick() {
+    setInterval(
+      function() {
+        this.data2.forEach(x => {
+          x.frequency = Math.random();
+        });
+        this.createChart();
+      }.bind(this),
+      250
+    );
+  }
+
   private createChart(): void {
     const element = this.chartContainer.nativeElement;
     d3.select(element)
@@ -168,8 +180,6 @@ export class CandlestickChartComponent
       .append('svg')
       .attr('width', element.offsetWidth)
       .attr('height', element.offsetHeight);
-
-    console.log(element);
 
     const contentWidth =
       element.offsetWidth - this.margin.left - this.margin.right;
