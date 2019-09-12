@@ -9,6 +9,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import * as d3 from 'd3';
+import {CandlestickDataModel} from '../candlestick-data-model';
 
 interface DataModel {
   letter: string;
@@ -26,8 +27,8 @@ export class CandlestickChartComponent
   @ViewChild('chart', { static: true })
   private chartContainer: ElementRef;
 
-  @Input()
-  data: DataModel[];
+  // @Input()
+  // data: DataModel[];
   data2 = [
     {
       letter: 'A',
@@ -134,10 +135,11 @@ export class CandlestickChartComponent
       frequency: 0.00074
     }
   ];
-
-  ngOnInit() {}
+  @Input() data: CandlestickDataModel[];
 
   margin = { top: 20, right: 20, bottom: 30, left: 40 };
+
+  ngOnInit() {}
 
   constructor() {}
 
