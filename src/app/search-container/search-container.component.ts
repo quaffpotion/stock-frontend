@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Stock } from '../stock.model';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of, Subject, BehaviorSubject, combineLatest } from 'rxjs';
 import {
   tap,
   switchMap,
   debounceTime,
-  distinctUntilChanged
+  distinctUntilChanged, map
 } from 'rxjs/operators';
 
 @Component({
@@ -18,6 +18,11 @@ export class SearchContainerComponent implements OnInit {
   searchTerm: string;
   searchTerms: Subject<string> = new Subject();
   stocks$: Observable<Stock[]>;
+  selectedStock$: Observable<Stock>;
+  selected$: BehaviorSubject<number>;
+  detailStocks = [];
+  selectedStock: Stock;
+
 
   filterString = '';
 
@@ -25,7 +30,10 @@ export class SearchContainerComponent implements OnInit {
   selected: number;
   listlength: number;
 
-  constructor() {}
+  constructor() {
+
+    this.selected$ = new BehaviorSubject<number>(0);
+  }
 
   pushSearchTerm() {
     console.log('Pushing: ', this.filterString);
@@ -34,14 +42,15 @@ export class SearchContainerComponent implements OnInit {
 
   searchStocks(term: string): Observable<Stock[]> {
     this.selected = 0;
+    this.selected$.next(0);
     const result =
       term == ''
         ? []
         : this.mockdata.filter(
-            item =>
-              item.name.toLowerCase().includes(term.toLowerCase()) ||
-              item.symbol.toLowerCase().includes(term.toLowerCase())
-          );
+          item =>
+            item.name.toLowerCase().includes(term.toLowerCase()) ||
+            item.symbol.toLowerCase().includes(term.toLowerCase())
+        );
     this.listlength = result.length;
     return of(result);
   }
@@ -54,6 +63,16 @@ export class SearchContainerComponent implements OnInit {
       switchMap((term: string) => this.searchStocks(term)),
       tap(searchResult => console.log('stocks found: ', searchResult))
     );
+    this.selectedStock$ = combineLatest(this.stocks$, this.selected$)
+      .pipe(
+        map(
+          ([stock, selected]) => {
+            console.log("***", stock[selected]);
+            this.selectedStock = stock[selected]
+            return stock[selected];
+          }
+        )
+      )
   }
 
   onFocus() {
@@ -64,14 +83,20 @@ export class SearchContainerComponent implements OnInit {
     this.hidden = true;
   }
   handleDown() {
-    this.selected = this.customMod(this.selected + 1, this.listlength);
+    // this.selected = this.customMod(this.selected + 1, this.listlength);
+    this.selected = this.selected === this.listlength - 1 ? 0 : this.selected + 1;
+
+    this.selected$.next(this.selected);
   }
   handleUp(e) {
     e.preventDefault(); //default behavior puts cursor at beginning of input box
     this.selected = this.customMod(this.selected - 1, this.listlength);
+    this.selected$.next(this.selected);
+
   }
   handleEnter() {
-    console.log('enter key', this.selected);
+    this.detailStocks = [...this.detailStocks, this.selectedStock]
+
   }
 
   customMod(x, n) {
