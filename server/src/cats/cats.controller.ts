@@ -1,6 +1,6 @@
 import { Controller, Get, Body, Param, Post, Redirect } from '@nestjs/common';
 import { Request } from 'express';
-import {CreateClassDto} from './create-cats.dto'
+import {CreateClassDto} from './create-cats.dto';
 
 
 @Controller('cats')
@@ -20,4 +20,6 @@ export class CatsController {
     return `meow, ${name}`;
   }
 
+
 }
+  

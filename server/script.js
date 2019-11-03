@@ -15,28 +15,28 @@ const pool = new Pool({
   host: 'localhost',
   database: 'stocks',
   password: 'example',
-  port: 5433 //Default 5432
+  port: 5432, //Default 5432
 });
 pool.query('SELECT datname FROM pg_database', (err, res) => {
-    if(err) {
-        console.log(err);
-    } else {
-        console.log(res.rows)
-    }
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(res.rows);
+  }
 });
 pool.query('SELECT NOW()', (err, res) => {
-    if(err) {
-        console.log(err);
-    } else {
-        console.log(res.rows)
-    }
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(res.rows);
+  }
 });
 pool.query('SELECT * FROM dashboard', (err, res) => {
-    if(err) {
-        console.log(err);
-    } else {
-        console.log(res.rows)
-    }
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(res.rows);
+  }
   pool.end();
 });
 // // you can also use async/await
