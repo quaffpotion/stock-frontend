@@ -1,5 +1,38 @@
 <div>some content to fill the box</div>
 
+<svg viewBox="0 0 1000 100">
+  <rect
+    *ngFor="let height of data; index as barposition"
+    [attr.x]="barposition"
+    [attr.height]="height"
+    width="1"
+    fill="green"
+  ></rect>
+</svg>
+<!-- below the height on the page is
+scaled by a factor of 2x-->
+<svg viewBox="0 0 500 100">
+  <rect
+    *ngFor="let height of data; index as barposition"
+    [attr.x]="barposition"
+    [attr.height]="height"
+    width="1"
+    fill="green"
+  ></rect>
+</svg>
+<!-- below is the version that scales so
+that the bar width changes depending on
+how many datapoints are in view -->
+<svg viewBox="0 0 250 100">
+  <rect
+    *ngFor="let height of data; index as barposition"
+    [attr.x]="barposition"
+    [attr.height]="height / 4"
+    width="1"
+    fill="green"
+  ></rect>
+</svg>
+
 <svg viewBox="0 0 4 4">
   <rect x="0" y="0" width="1" height="1" fill="blue"></rect>
   <rect x="1" y="0" width="1" height="1" fill="red"></rect>

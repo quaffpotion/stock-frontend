@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./candlestick-chart.component.css']
 })
 export class CandlestickChartComponent {
-  data = [10, 20, 50, 40, 80, 20, 10, 90, 20, 70, 20];
+  data: number[];
+  constructor() {
+    this.data = [...new Array(1000)].map(() => Math.random() * 100);
+    console.log(this.data);
+  }
 }
