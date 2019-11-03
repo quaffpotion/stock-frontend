@@ -5,7 +5,8 @@ import {
   tap,
   switchMap,
   debounceTime,
-  distinctUntilChanged, map
+  distinctUntilChanged,
+  map
 } from 'rxjs/operators';
 
 @Component({
@@ -22,16 +23,12 @@ export class SearchContainerComponent implements OnInit {
   selected$: BehaviorSubject<number>;
   detailStocks = [];
   selectedStock: Stock;
-
-
   filterString = '';
-
   hidden = true;
   selected: number;
   listlength: number;
 
   constructor() {
-
     this.selected$ = new BehaviorSubject<number>(0);
   }
 
@@ -47,10 +44,10 @@ export class SearchContainerComponent implements OnInit {
       term == ''
         ? []
         : this.mockdata.filter(
-          item =>
-            item.name.toLowerCase().includes(term.toLowerCase()) ||
-            item.symbol.toLowerCase().includes(term.toLowerCase())
-        );
+            item =>
+              item.name.toLowerCase().includes(term.toLowerCase()) ||
+              item.symbol.toLowerCase().includes(term.toLowerCase())
+          );
     this.listlength = result.length;
     return of(result);
   }
@@ -63,16 +60,13 @@ export class SearchContainerComponent implements OnInit {
       switchMap((term: string) => this.searchStocks(term)),
       tap(searchResult => console.log('stocks found: ', searchResult))
     );
-    this.selectedStock$ = combineLatest(this.stocks$, this.selected$)
-      .pipe(
-        map(
-          ([stock, selected]) => {
-            console.log("***", stock[selected]);
-            this.selectedStock = stock[selected]
-            return stock[selected];
-          }
-        )
-      )
+    this.selectedStock$ = combineLatest(this.stocks$, this.selected$).pipe(
+      map(([stock, selected]) => {
+        console.log('***', stock[selected]);
+        this.selectedStock = stock[selected];
+        return stock[selected];
+      })
+    );
   }
 
   onFocus() {
@@ -84,7 +78,8 @@ export class SearchContainerComponent implements OnInit {
   }
   handleDown() {
     // this.selected = this.customMod(this.selected + 1, this.listlength);
-    this.selected = this.selected === this.listlength - 1 ? 0 : this.selected + 1;
+    this.selected =
+      this.selected === this.listlength - 1 ? 0 : this.selected + 1;
 
     this.selected$.next(this.selected);
   }
@@ -92,11 +87,9 @@ export class SearchContainerComponent implements OnInit {
     e.preventDefault(); //default behavior puts cursor at beginning of input box
     this.selected = this.customMod(this.selected - 1, this.listlength);
     this.selected$.next(this.selected);
-
   }
   handleEnter() {
-    this.detailStocks = [...this.detailStocks, this.selectedStock]
-
+    this.detailStocks = [...this.detailStocks, this.selectedStock];
   }
 
   customMod(x, n) {
