@@ -1,63 +1,73 @@
 <div>some content to fill the box</div>
 
-<svg viewBox="0 0 1000 100">
-  <rect
-    *ngFor="let stock of stocks; index as candleposition"
-    [attr.x]="candleposition + 0.4"
-    [attr.y]="min(stock.open, stock.close, stock.high, stock.low)"
-    [attr.height]="this.minmax(stock)"
-    width="0.2"
-    attr.fill="{{ upday(stock) }}"
-  ></rect>
-  <rect
-    *ngFor="let stock of stocks; index as candleposition"
-    [attr.x]="candleposition"
-    [attr.y]="min(stock.open, stock.close)"
-    [attr.height]="abs(stock.open - stock.close)"
-    width="1"
-    attr.fill="{{ upday(stock) }}"
-  ></rect>
+<svg viewBox="0 -100 1000 100">
+  <g transform="scale(1,-1)">
+    <rect
+      *ngFor="let stock of stocks; index as candleposition"
+      [attr.x]="candleposition + 0.4"
+      [attr.y]="min(stock.open, stock.close, stock.high, stock.low)"
+      [attr.height]="this.minmax(stock)"
+      width="0.2"
+      attr.fill="{{ upday(stock) }}"
+    ></rect>
+    <rect
+      *ngFor="let stock of stocks; index as candleposition"
+      [attr.x]="candleposition"
+      [attr.y]="min(stock.open, stock.close)"
+      [attr.height]="abs(stock.open - stock.close)"
+      width="1"
+      attr.fill="{{ upday(stock) }}"
+    ></rect>
+  </g>
 </svg>
-<svg viewBox="0 0 1000 100">
-  <rect
-    *ngFor="let height of data; index as barposition"
-    [attr.x]="barposition"
-    [attr.height]="height"
-    width="1"
-    fill="green"
-  ></rect>
+<svg viewBox="0 -100 1000 100">
+  <g transform="scale(1,-1)">
+    <rect
+      *ngFor="let height of data; index as barposition"
+      [attr.x]="barposition"
+      [attr.height]="height"
+      width="1"
+      fill="green"
+    ></rect>
+  </g>
 </svg>
 <!-- below the height on the page is
 scaled by a factor of 2x-->
-<svg viewBox="0 0 500 100">
-  <rect
-    *ngFor="let height of data; index as barposition"
-    [attr.x]="barposition"
-    [attr.height]="height"
-    width="1"
-    fill="green"
-  ></rect>
+<svg viewBox="0 -100 500 100">
+  <g transform="scale(1,-1)">
+    <rect
+      *ngFor="let height of data; index as barposition"
+      [attr.x]="barposition"
+      [attr.height]="height"
+      width="1"
+      fill="green"
+    ></rect>
+  </g>
 </svg>
 <!-- below is the version that scales so
 that the bar width changes depending on
 how many datapoints are in view -->
-<svg viewBox="0 0 250 100">
-  <rect
-    *ngFor="let height of data; index as barposition"
-    [attr.x]="barposition"
-    [attr.height]="height / 4"
-    width="1"
-    fill="green"
-  ></rect>
+<svg viewBox="0 -100 250 100">
+  <g>
+    <rect
+      *ngFor="let height of data; index as barposition"
+      [attr.x]="barposition"
+      [attr.height]="height / 4"
+      width="1"
+      fill="green"
+    ></rect>
+  </g>
 </svg>
 
-<svg viewBox="0 0 4 4">
-  <rect x="0" y="0" width="1" height="1" fill="blue"></rect>
-  <rect x="1" y="0" width="1" height="1" fill="red"></rect>
-  <rect x="0" y="1" width="1" height="1" fill="green"></rect>
-  <rect x="1" y="1" width="1" height="1" fill="purple"></rect>
-  <rect x="2" y="2" width="1" height="1" fill="blue"></rect>
-  <rect x="3" y="2" width="1" height="1" fill="red"></rect>
-  <rect x="2" y="3" width="1" height="1" fill="green"></rect>
-  <rect x="3" y="3" width="1" height="1" fill="purple"></rect>
+<svg viewBox="0 -4 4 4">
+  <g transform="scale(1,-1)">
+    <rect x="0" y="0" width="1" height="1" fill="blue"></rect>
+    <rect x="1" y="0" width="1" height="1" fill="red"></rect>
+    <rect x="0" y="1" width="1" height="1" fill="green"></rect>
+    <rect x="1" y="1" width="1" height="1" fill="purple"></rect>
+    <rect x="2" y="2" width="1" height="1" fill="blue"></rect>
+    <rect x="3" y="2" width="1" height="1" fill="red"></rect>
+    <rect x="2" y="3" width="1" height="1" fill="green"></rect>
+    <rect x="3" y="3" width="1" height="1" fill="purple"></rect>
+  </g>
 </svg>
