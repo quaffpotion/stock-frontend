@@ -15,6 +15,6 @@ export class DataIexService {
 
   getCompanyBySymbol(symbol: string) {
     this.http.get('/api/tops').subscribe(j => console.log(j));
-    this.iex.stockCompany('AAPL').then(company => console.log(company));
+    // this.iex.stockCompany('AAPL').then(company => console.log(company)); //Returns forbidden, perhaps API is outdated?
   }
 }
