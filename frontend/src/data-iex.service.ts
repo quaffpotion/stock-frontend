@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { IEXClient } from 'iex-api';
+import { HttpClient } from '@angular/common/http';
 import * as _fetch from 'isomorphic-fetch';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataIexService {
-  constructor() {}
+  iex: IEXClient;
 
-  iex = new IEXClient(_fetch);
+  constructor(private http: HttpClient) {
+    this.iex = new IEXClient(_fetch);
+  }
 
   getCompanyBySymbol(symbol: string) {
-    this.iex
-      .request('https://api.iextrading.com/1.0/tops?symbols=SNAP,fb,AIG%2b')
-      .then(company => console.log(company));
+    this.http.get('/api/tops').subscribe(j => console.log(j));
+    this.iex.stockCompany('AAPL').then(company => console.log(company));
   }
 }
