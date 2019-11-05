@@ -8,6 +8,7 @@ import {
   distinctUntilChanged,
   map
 } from 'rxjs/operators';
+import { DataIexService } from '../../data-iex.service';
 
 @Component({
   selector: 'app-search-container',
@@ -27,9 +28,11 @@ export class SearchContainerComponent implements OnInit {
   hidden = true;
   selected: number;
   listlength: number;
+  dataIexService: DataIexService;
 
-  constructor() {
+  constructor(dataIexService: DataIexService) {
     this.selected$ = new BehaviorSubject<number>(0);
+    this.dataIexService = dataIexService;
   }
 
   pushSearchTerm() {
@@ -90,6 +93,8 @@ export class SearchContainerComponent implements OnInit {
   }
   handleEnter() {
     this.detailStocks = [...this.detailStocks, this.selectedStock];
+    console.log(this.selectedStock.symbol);
+    this.dataIexService.getCompanyBySymbol(this.selectedStock.symbol);
   }
 
   customMod(x, n) {
