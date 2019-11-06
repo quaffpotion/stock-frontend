@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { MSFT } from '../msft';
 @Component({
   selector: 'app-candlestick-chart',
   templateUrl: './candlestick-chart.component.html',
@@ -10,6 +10,12 @@ export class CandlestickChartComponent {
   max = Math.max;
   abs = Math.abs;
   data: number[];
+  data2: {
+    open: number;
+    high: number;
+    low: number;
+    close: number;
+  }[];
   stocks: {
     open: number;
     high: number;
@@ -17,6 +23,7 @@ export class CandlestickChartComponent {
     close: number;
   }[];
   constructor() {
+    this.data2 = MSFT;
     this.data = [...new Array(1000)].map(() => Math.random() * 100);
     this.stocks = [...new Array(1000)].map(() => ({
       open: Math.random() * 100,
