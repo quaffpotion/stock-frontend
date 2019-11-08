@@ -1,3 +1,36 @@
 <app-search-container [mockdata]="mockdata"></app-search-container>
 
+<!-- viewBox takes the height of the svg (which may or may not be automatically
+  determined) and makes a scale of e.g. 4 units. Then the height is e.g. 6 units
+- except these are using the same scale as the horizontal scale which ultimately
+came from the height -->
+<svg width="100" heigh="200"></svg>
+  <svg viewBox="0 0 4 6">
+    <rect
+      *ngFor="let i of [1, 2, 3, 4]; index as idx"
+      [attr.x]="idx"
+      [attr.y]="idx"
+      width="1"
+      height="1"
+      fill="red"
+    ></rect>
+    <rect x="2" y="5" width="1" height="1" fill="purple"></rect>
+  </svg>
+<svg viewBox="0 0 6 3.5">
+  <g>
+    <rect
+      *ngFor="let i of [1, 2, 3, 4]; index as idx"
+      [attr.x]="idx"
+      [attr.y]="idx"
+      width="1"
+      height="1"
+      fill="blue"
+    ></rect>
+  </g>
+</svg>
+<div>
+  <svg width="200" height="100">
+    <rect fill="red"></rect>
+  </svg>
+</div>
 <app-candlestick-chart></app-candlestick-chart>
