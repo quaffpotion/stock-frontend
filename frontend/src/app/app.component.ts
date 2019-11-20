@@ -39,6 +39,10 @@ export class AppComponent implements AfterContentInit {
   //     .pipe(delay(3000 * this.count++));
   // }
 
+  color(r, g, b) {
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+
   ngAfterContentInit() {
     d3.csv('http://localhost:8080/assets/FTSE.csv').then(data =>
       console.log(data)
