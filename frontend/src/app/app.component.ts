@@ -19,7 +19,7 @@ interface DataModel {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterContentInit {
+export class AppComponent implements  AfterContentInit {
   data: Observable<DataModel>;
   count: any = 0;
   somedata: Ohlc[];
@@ -48,6 +48,8 @@ export class AppComponent implements AfterContentInit {
       new Ohlc(5,7,2,3),
       new Ohlc(2,4,1,3),
     ]
+    console.log("somedata: ", this.somedata);
+    
   }
 
   color(r, g, b) {
