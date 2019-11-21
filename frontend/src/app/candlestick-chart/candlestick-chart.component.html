@@ -1,4 +1,5 @@
-<svg viewBox="0 -100 1000 100">
+
+<!-- <svg viewBox="0 -100 1000 100">
   <g transform="scale(1,-1)">
     <rect
       *ngFor="let stock of data2.slice(0, 999); index as candleposition"
@@ -17,17 +18,16 @@
       attr.fill="{{ upday(stock) }}"
     ></rect>
   </g>
-</svg>
-<div style="width:800px; height:500px;">
+</svg> -->
+<div style="width:100%;height:100vh">
   <svg
     width="100%"
     height="100%"
     preserveAspectRatio="none"
-    viewBox="0 -100 100 100"
+    viewBox="0 -10 3 10"
   >
-    <g transform="scale(1 -1)">
+    <g *ngFor="let stock of data3; index as candleposition" transform="scale(1 -1)">
       <rect
-        *ngFor="let stock of stocks.slice(0, 100); index as candleposition"
         [attr.x]="candleposition + 0.4"
         [attr.y]="min(stock.open, stock.close, stock.high, stock.low)"
         [attr.height]="this.minmax(stock)"
@@ -35,7 +35,6 @@
         attr.fill="{{ upday(stock) }}"
       ></rect>
       <rect
-        *ngFor="let stock of stocks; index as candleposition"
         [attr.x]="candleposition"
         [attr.y]="min(stock.open, stock.close)"
         [attr.height]="abs(stock.open - stock.close)"
@@ -45,7 +44,7 @@
     </g>
   </svg>
 </div>
-<svg viewBox="0 -100 1000 100">
+<!-- <svg viewBox="0 -100 1000 100">
   <g transform="scale(1,-1)">
     <rect
       *ngFor="let height of data; index as barposition"
@@ -55,10 +54,10 @@
       fill="green"
     ></rect>
   </g>
-</svg>
+</svg> -->
 <!-- below the height on the page is
 scaled by a factor of 2x-->
-<svg viewBox="0 -100 500 100">
+<!-- <svg viewBox="0 -100 500 100">
   <g transform="scale(1,-1)">
     <rect
       *ngFor="let height of data; index as barposition"
@@ -68,11 +67,11 @@ scaled by a factor of 2x-->
       fill="green"
     ></rect>
   </g>
-</svg>
+</svg> -->
 <!-- below is the version that scales so
 that the bar width changes depending on
 how many datapoints are in view -->
-<svg viewBox="0 -100 250 100">
+<!-- <svg viewBox="0 -100 250 100">
   <g>
     <rect
       *ngFor="let height of data; index as barposition"
@@ -82,9 +81,9 @@ how many datapoints are in view -->
       fill="green"
     ></rect>
   </g>
-</svg>
+</svg> -->
 
-<svg viewBox="0 -4 4 4">
+<!-- <svg viewBox="0 -4 4 4">
   <g transform="scale(1,-1)">
     <rect x="0" y="0" width="1" height="1" fill="blue"></rect>
     <rect x="1" y="0" width="1" height="1" fill="red"></rect>
@@ -95,4 +94,4 @@ how many datapoints are in view -->
     <rect x="2" y="3" width="1" height="1" fill="green"></rect>
     <rect x="3" y="3" width="1" height="1" fill="purple"></rect>
   </g>
-</svg>
+</svg> -->

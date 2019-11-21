@@ -6,6 +6,8 @@ import * as d3 from 'd3';
 import { Observable } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { MSFT } from './msft';
+import { Ohlc } from './ohlc.model';
 
 interface DataModel {
   letter: string;
@@ -20,6 +22,7 @@ interface DataModel {
 export class AppComponent implements AfterContentInit {
   data: Observable<DataModel>;
   count: any = 0;
+  somedata: Ohlc[];
 
   /*Create fake data from various sources*/
   /*eventually make into a service*/
@@ -38,6 +41,14 @@ export class AppComponent implements AfterContentInit {
   //     .get<DataModel>('./assets/data.json')
   //     .pipe(delay(3000 * this.count++));
   // }
+
+  constructor() {
+    this.somedata = [
+      new Ohlc(1,10,0,9),
+      new Ohlc(5,7,2,3),
+      new Ohlc(2,4,1,3),
+    ]
+  }
 
   color(r, g, b) {
     return `rgb(${r}, ${g}, ${b})`;
