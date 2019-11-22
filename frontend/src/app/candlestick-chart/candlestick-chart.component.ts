@@ -1,13 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from "@angular/core";
 import { Ohlc } from "../ohlc.model";
-import { MSFT } from '../msft';
+import { MSFT } from "../msft";
 @Component({
-  selector: 'app-candlestick-chart',
-  templateUrl: './candlestick-chart.component.html',
-  styleUrls: ['./candlestick-chart.component.css']
+  selector: "app-candlestick-chart",
+  templateUrl: "./candlestick-chart.component.html",
+  styleUrls: ["./candlestick-chart.component.css"]
 })
 export class CandlestickChartComponent {
-  @Input() ourdata: Ohlc[]
+  @Input() data: Ohlc[];
   min = Math.min;
   max = Math.max;
   abs = Math.abs;
@@ -26,11 +26,17 @@ export class CandlestickChartComponent {
   // }[];
   data3: Ohlc[];
   constructor() {
-    this.data3=[
-      new Ohlc(1,10,0,9),
-      new Ohlc(5,7,2,3),
-      new Ohlc(2,4,1,3),
+    this.data3 = [
+      new Ohlc(1, 10, 0, 9),
+      new Ohlc(5, 7, 2, 3),
+      new Ohlc(2, 4, 1, 3)
     ];
+    this.data = [
+      new Ohlc(1, 10, 0, 10),
+      new Ohlc(5, 7, 2, 9),
+      new Ohlc(2, 4, 1, 8)
+    ];
+
     // this.data2 = MSFT;
     // this.data = [...new Array(1000)].map(() => Math.random() * 100);
     // this.stocks = [...new Array(1000)].map(() => ({
@@ -50,9 +56,9 @@ export class CandlestickChartComponent {
 
   upday(stock) {
     if (stock.close >= stock.open) {
-      return 'green';
+      return "green";
     } else {
-      return 'red';
+      return "red";
     }
   }
 }
