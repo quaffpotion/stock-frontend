@@ -53,6 +53,11 @@ export class CandlestickChartComponent {
       Math.min(stock.open, stock.close, stock.low, stock.high)
     );
   }
+  getViewBox(data: Ohlc[]) {
+    const viewBox = `0 -10 ${data.length} 10`;
+    console.log(viewBox);
+    return viewBox;
+  }
 
   upday(stock) {
     if (stock.close >= stock.open) {
