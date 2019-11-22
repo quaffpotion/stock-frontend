@@ -18,26 +18,33 @@
     ></rect>
   </g>
 </svg>
-<svg viewBox="0 -100 1000 100">
-  <g transform="scale(1,-1)">
-    <rect
-      *ngFor="let stock of stocks; index as candleposition"
-      [attr.x]="candleposition + 0.4"
-      [attr.y]="min(stock.open, stock.close, stock.high, stock.low)"
-      [attr.height]="this.minmax(stock)"
-      width="0.2"
-      attr.fill="{{ upday(stock) }}"
-    ></rect>
-    <rect
-      *ngFor="let stock of stocks; index as candleposition"
-      [attr.x]="candleposition"
-      [attr.y]="min(stock.open, stock.close)"
-      [attr.height]="abs(stock.open - stock.close)"
-      width="1"
-      attr.fill="{{ upday(stock) }}"
-    ></rect>
-  </g>
-</svg>
+<div style="width:800px; height:500px;">
+  <svg
+    width="100%"
+    height="100%"
+    preserveAspectRatio="none"
+    viewBox="0 -100 100 100"
+  >
+    <g transform="scale(1 -1)">
+      <rect
+        *ngFor="let stock of stocks.slice(0, 100); index as candleposition"
+        [attr.x]="candleposition + 0.4"
+        [attr.y]="min(stock.open, stock.close, stock.high, stock.low)"
+        [attr.height]="this.minmax(stock)"
+        width="0.2"
+        attr.fill="{{ upday(stock) }}"
+      ></rect>
+      <rect
+        *ngFor="let stock of stocks; index as candleposition"
+        [attr.x]="candleposition"
+        [attr.y]="min(stock.open, stock.close)"
+        [attr.height]="abs(stock.open - stock.close)"
+        width="1"
+        attr.fill="{{ upday(stock) }}"
+      ></rect>
+    </g>
+  </svg>
+</div>
 <svg viewBox="0 -100 1000 100">
   <g transform="scale(1,-1)">
     <rect
