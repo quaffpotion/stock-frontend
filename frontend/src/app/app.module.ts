@@ -7,6 +7,7 @@ import { SearchContainerComponent } from './search-container/search-container.co
 import { HighlightPipe } from './highlight.pipe';
 import { DisplayAreaComponent } from './display-area/display-area.component';
 import { CandlestickChartComponent } from './candlestick-chart/candlestick-chart.component';
+import { TestInputComponent } from './test-input/test-input.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { CandlestickChartComponent } from './candlestick-chart/candlestick-chart
     SearchContainerComponent,
     HighlightPipe,
     DisplayAreaComponent,
-    CandlestickChartComponent
+    CandlestickChartComponent,
+    TestInputComponent
   ],
   //note, import order matters - must import after BrowserModule
   imports: [BrowserModule, FormsModule, HttpClientModule],
