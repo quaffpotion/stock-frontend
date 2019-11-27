@@ -50,6 +50,7 @@ export class AppComponent {
   }
 
   preprocess(data) {
+    data = data.map(x => {return {open: x.open, close:x.close, high:x.high, low:x.low}});
     const min = Math.min(...data.map(x => x.low));
     data.map(item => {item.open = item.open-min; item.close = item.close-min; item.high=item.high-min;item.low=item.low-min; return item});
     return data;

@@ -6,7 +6,7 @@
   <input [(ngModel)]="myNumber2" />
 </div>
 <app-candlestick-chart
-  [data]="preprocess(somedata2).slice(myNumber1, myNumber2)"
+  [data]="preprocess(somedata2.slice(myNumber1, myNumber2))"
 ></app-candlestick-chart>
 <app-candlestick-chart
   [data]="
