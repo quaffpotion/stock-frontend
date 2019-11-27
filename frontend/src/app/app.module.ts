@@ -5,7 +5,6 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { SearchContainerComponent } from "./search-container/search-container.component";
 import { HighlightPipe } from "./highlight.pipe";
-import { DisplayAreaComponent } from "./display-area/display-area.component";
 import { CandlestickChartComponent } from "./candlestick-chart/candlestick-chart.component";
 
 @NgModule({
@@ -13,7 +12,6 @@ import { CandlestickChartComponent } from "./candlestick-chart/candlestick-chart
     AppComponent,
     SearchContainerComponent,
     HighlightPipe,
-    DisplayAreaComponent,
     CandlestickChartComponent
   ],
   //note, import order matters - must import after BrowserModule
