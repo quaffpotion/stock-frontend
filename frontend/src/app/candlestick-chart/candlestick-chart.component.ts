@@ -20,8 +20,7 @@ export class CandlestickChartComponent {
       Math.min(stock.open, stock.close, stock.low, stock.high)
     );
   }
-  getViewBox(height, data: Ohlc[]) {
-    const min = Math.min(...data.map(x => x.low));
+  getViewBox(data: Ohlc[]) {
     const max = Math.max(...data.map(x => x.high));
     const viewBox = `0 -${max} ${data.length} ${max}`;
     return viewBox;
