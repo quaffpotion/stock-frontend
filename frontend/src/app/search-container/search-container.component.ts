@@ -1,19 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Stock } from '../stock.model';
-import { Observable, of, Subject, BehaviorSubject, combineLatest } from 'rxjs';
+import { Component, OnInit, Input } from "@angular/core";
+import { Stock } from "../stock.model";
+import { Observable, of, Subject, BehaviorSubject, combineLatest } from "rxjs";
 import {
   tap,
   switchMap,
   debounceTime,
   distinctUntilChanged,
   map
-} from 'rxjs/operators';
-import { DataIexService } from '../../data-iex.service';
+} from "rxjs/operators";
+import { DataIexService } from "../../data-iex.service";
 
 @Component({
-  selector: 'app-search-container',
-  templateUrl: './search-container.component.html',
-  styleUrls: ['./search-container.component.css']
+  selector: "app-search-container",
+  templateUrl: "./search-container.component.html",
+  styleUrls: ["./search-container.component.css"]
 })
 export class SearchContainerComponent implements OnInit {
   @Input() mockdata: Stock[];
@@ -24,7 +24,7 @@ export class SearchContainerComponent implements OnInit {
   selected$: BehaviorSubject<number>;
   detailStocks = [];
   selectedStock: Stock;
-  filterString = '';
+  filterString = "";
   hidden = true;
   selected: number;
   listlength: number;
@@ -36,7 +36,7 @@ export class SearchContainerComponent implements OnInit {
   }
 
   pushSearchTerm() {
-    console.log('Pushing: ', this.filterString);
+    console.log("Pushing: ", this.filterString);
     this.searchTerms.next(this.filterString);
   }
 
@@ -44,7 +44,7 @@ export class SearchContainerComponent implements OnInit {
     this.selected = 0;
     this.selected$.next(0);
     const result =
-      term == ''
+      term == ""
         ? []
         : this.mockdata.filter(
             item =>
@@ -61,11 +61,11 @@ export class SearchContainerComponent implements OnInit {
       debounceTime(200),
       distinctUntilChanged(),
       switchMap((term: string) => this.searchStocks(term)),
-      tap(searchResult => console.log('stocks found: ', searchResult))
+      tap(searchResult => console.log("stocks found: ", searchResult))
     );
     this.selectedStock$ = combineLatest(this.stocks$, this.selected$).pipe(
       map(([stock, selected]) => {
-        console.log('***', stock[selected]);
+        console.log("***", stock[selected]);
         this.selectedStock = stock[selected];
         return stock[selected];
       })
@@ -93,7 +93,7 @@ export class SearchContainerComponent implements OnInit {
   }
   handleEnter() {
     this.detailStocks = [...this.detailStocks, this.selectedStock];
-    console.log(this.selectedStock.symbol);
+    console.log(this.detailStocks);
     this.dataIexService.getCompanyBySymbol(this.selectedStock.symbol);
   }
 

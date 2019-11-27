@@ -21,7 +21,6 @@ export class CandlestickChartComponent {
   }
   getViewBox(data: Ohlc[]) {
     const viewBox = `0 -10 ${data.length} 10`;
-    console.log(viewBox);
     return viewBox;
   }
 
