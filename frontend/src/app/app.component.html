@@ -1,13 +1,12 @@
 <app-search-container [mockdata]="mockdata"></app-search-container>
 
 <app-candlestick-chart
-  test="hello something"
-  [data]="[{ open: 2, close: 8, high: 10, low: 0 }]"
+  [data]="[
+    { open: 2, close: 8, high: 10, low: 0 },
+    { open: 8, close: 2, high: 9, low: 1 }
+  ]"
 ></app-candlestick-chart>
-<app-candlestick-chart
-  test="more testing"
-  [data]="somedata"
-></app-candlestick-chart>
+<app-candlestick-chart [data]="somedata"></app-candlestick-chart>
 
 <!-- viewBox takes the width of the svg (which may or may not be automatically
   determined) and makes a scale of e.g. 4 units. Then the height is e.g. 6 units

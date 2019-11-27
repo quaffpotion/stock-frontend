@@ -22,7 +22,7 @@ interface DataModel {
 export class AppComponent implements AfterContentInit {
   data: Observable<DataModel>;
   count: any = 0;
-  somedata: Ohlc[] = [new Ohlc(0, 10, 0, 10)]; // these are initialized first, constructors overwrite these
+  somedata: Ohlc[] = [new Ohlc(5, 9, 3, 4)]; // these are initialized first, constructors overwrite these
 
   /*Create fake data from various sources*/
   /*eventually make into a service*/
