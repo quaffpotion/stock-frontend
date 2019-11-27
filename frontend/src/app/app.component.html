@@ -1,7 +1,11 @@
-<app-search-container [mockdata]="mockdata"></app-search-container> Height:
-<input [(ngModel)]="myHeight" /> <br />
-Slice 1: <input [(ngModel)]="myNumber1" /> Slice 1:
-<input [(ngModel)]="myNumber2" />
+<app-search-container [mockdata]="mockdata"></app-search-container>
+<div
+  style="width:300px; position:fixed; right:0; bottom:0;display:flex;flex-direction: column;"
+>
+  Height: <input [(ngModel)]="myHeight" /> Slice 1:
+  <input [(ngModel)]="myNumber1" /> Slice 2:
+  <input [(ngModel)]="myNumber2" />
+</div>
 <app-candlestick-chart
   [coordinateheight]="myHeight"
   [data]="somedata2.slice(myNumber1, myNumber2)"

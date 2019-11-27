@@ -43,4 +43,9 @@ export class AppComponent {
   color(r, g, b) {
     return `rgb(${r}, ${g}, ${b})`;
   }
+
+  preprocess(data) {
+    const shifted = data.map(x => x - 30);
+    return shifted;
+  }
 }
