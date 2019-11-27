@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-
+import { MSFT } from "./msft";
 import { Stock } from "./stock.model";
 import { MOCKDATA } from "./mockdata";
 import { Observable } from "rxjs";
@@ -17,8 +17,12 @@ interface DataModel {
 })
 export class AppComponent {
   data: Observable<DataModel>;
+  myHeight = 115;
+  myNumber1 = 0;
+  myNumber2 = 1300;
   count: any = 0;
   somedata: Ohlc[] = [new Ohlc(5, 9, 3, 4)]; // these are initialized first, constructors overwrite these
+  somedata2;
 
   /*Create fake data from various sources*/
   /*eventually make into a service*/
@@ -32,7 +36,9 @@ export class AppComponent {
   ];
   mockdata = [...MOCKDATA, ...this.moreMockdata, ...this.mockFromJson];
 
-  constructor() {}
+  constructor() {
+    this.somedata2 = MSFT;
+  }
 
   color(r, g, b) {
     return `rgb(${r}, ${g}, ${b})`;
