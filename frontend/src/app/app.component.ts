@@ -20,8 +20,8 @@ export class AppComponent {
   myNumber1 = 0;
   myNumber2 = 2000;
   count: any = 0;
-  somedata: Ohlc[] = [new Ohlc(5, 9, 3, 4)]; // these are initialized first, constructors overwrite these
-  somedata2;
+  somedata = [new Ohlc(3,7,1,6), new Ohlc(8,10,0,2)];
+  somedata2 = MSFT;
 
   /*Create fake data from various sources*/
   /*eventually make into a service*/
@@ -35,22 +35,13 @@ export class AppComponent {
   ];
   mockdata = [...MOCKDATA, ...this.moreMockdata, ...this.mockFromJson];
 
-  constructor() {
-    this.somedata2 = MSFT;
-    this.somedata = [
-    { open: 3, close: 6, high: 7, low: 1 },
-      { open: 2, close: 8, high: 10, low: 0 },
-      { open: 0, close: 10, high: 10, low: 0 },
-      { open: 8, close: 2, high: 9, low: 1 }
-    ]
-  }
 
   color(r, g, b) {
     return `rgb(${r}, ${g}, ${b})`;
   }
 
   preprocess(data) {
-    data = data.map(x => {return {open: x.open, close:x.close, high:x.high, low:x.low}});
+    data = data.map(x => {return {open: x.open, close:x.close, high:x.high, low:x.low}});// deep copy
     const min = Math.min(...data.map(x => x.low));
     data.map(item => {item.open = item.open-min; item.close = item.close-min; item.high=item.high-min;item.low=item.low-min; return item});
     return data;

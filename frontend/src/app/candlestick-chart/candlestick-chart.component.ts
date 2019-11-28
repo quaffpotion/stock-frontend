@@ -8,7 +8,7 @@ import { Ohlc } from "../ohlc.model";
 export class CandlestickChartComponent {
   @Input() data: Ohlc[];
   @Input() coordinateheight = 150; // Default value so it doesn't throw an error
-  min = Math.min;
+  min = Math.min;// We can call `min` from the html template but we cannot call `Math.min` directly
   max = Math.max;
   abs = Math.abs;
   data3: Ohlc[];
@@ -16,8 +16,8 @@ export class CandlestickChartComponent {
 
   minmax(stock) {
     return (
-      Math.max(stock.open, stock.close, stock.low, stock.high) -
-      Math.min(stock.open, stock.close, stock.low, stock.high)
+      this.max(stock.open, stock.close, stock.low, stock.high) -
+      this.min(stock.open, stock.close, stock.low, stock.high)
     );
   }
   getViewBox(data: Ohlc[]) {
@@ -25,6 +25,8 @@ export class CandlestickChartComponent {
     const viewBox = `0 -${max} ${data.length} ${max}`;
     return viewBox;
   }
+
+
 
   upday(stock) {
     if (stock.close >= stock.open) {
