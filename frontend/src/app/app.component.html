@@ -5,6 +5,12 @@
   <input [(ngModel)]="myNumber1" /> Slice 2:
   <input [(ngModel)]="myNumber2" />
 </div>
+
+<pre>
+  {{ stocks$ | async }}
+</pre>
+
+
 <app-candlestick-chart
   [data]="preprocess(somedata2.slice(myNumber1, myNumber2))"
 ></app-candlestick-chart>
@@ -13,5 +19,5 @@
     preprocess(somedata.slice(myNumber1,myNumber2))
   "
 ></app-candlestick-chart>
-<app-candlestick-chart [data]="somedata"></app-candlestick-chart>
+<app-candlestick-chart [data]="somedata.slice(myNumber1, myNumber2)"></app-candlestick-chart>
 

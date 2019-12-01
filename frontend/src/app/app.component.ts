@@ -4,6 +4,7 @@ import { Stock } from "./stock.model";
 import { MOCKDATA } from "./mockdata";
 import { Observable } from "rxjs";
 import { Ohlc } from "./ohlc.model";
+import { DataIexService } from 'src/data-iex.service';
 
 interface DataModel {
   letter: string;
@@ -22,6 +23,9 @@ export class AppComponent {
   count: any = 0;
   somedata = [new Ohlc(3,7,1,6), new Ohlc(8,10,0,2)];
   somedata2 = MSFT;
+  stocks$;
+
+  constructor(private iex: DataIexService) {}
 
   /*Create fake data from various sources*/
   /*eventually make into a service*/
@@ -45,5 +49,9 @@ export class AppComponent {
     const min = Math.min(...data.map(x => x.low));
     data.map(item => {item.open = item.open-min; item.close = item.close-min; item.high=item.high-min;item.low=item.low-min; return item});
     return data;
+  }
+
+  getStocks() {
+    this.stocks$ = this.iex.getSymbol("unused", this.myNumber1, this.myNumber2);
   }
 }
