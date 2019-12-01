@@ -5,9 +5,22 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataIexService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getCompanyBySymbol(symbol: string) {
-    this.http.get('/api/tops').subscribe(j => console.log(j));
+  getCompanyBySymbol() {
+    this.http.get('https://api.worldtradingdata.com/api/v1/history?symbol=SNAP&sort=newest&api_token=demo')
+      .subscribe(data => console.log(this.dictToArray(data["history"]).slice(0,9)));
   }
+
+  dictToArray(data) {
+    return Object.keys(data).map(
+      key =>
+      {
+        return data[key];
+      }
+    );
+
+  }
+
+
 }

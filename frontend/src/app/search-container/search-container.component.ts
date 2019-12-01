@@ -94,7 +94,7 @@ export class SearchContainerComponent implements OnInit {
   handleEnter() {
     this.detailStocks = [...this.detailStocks, this.selectedStock];
     console.log(this.detailStocks);
-    this.dataIexService.getCompanyBySymbol(this.selectedStock.symbol);
+    this.dataIexService.getCompanyBySymbol();
   }
 
   customMod(x, n) {
