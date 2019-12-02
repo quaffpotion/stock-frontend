@@ -6,6 +6,8 @@ import { Observable } from "rxjs";
 import { Ohlc } from "./ohlc.model";
 import { DataIexService } from 'src/data-iex.service';
 
+import { map,tap } from 'rxjs/operators';
+
 interface DataModel {
   letter: string;
   frequency: number;
@@ -24,6 +26,8 @@ export class AppComponent {
   somedata = [new Ohlc(3,7,1,6), new Ohlc(8,10,0,2)];
   somedata2 = MSFT;
   stocks$;
+  mydata;
+  
 
   constructor(private iex: DataIexService) {}
 
@@ -51,7 +55,11 @@ export class AppComponent {
     return data;
   }
 
-  getStocks() {
-    this.stocks$ = this.iex.getSymbol("unused", this.myNumber1, this.myNumber2);
+  getData() {
+    this.mydata = this.iex.getSymbol("unused", this.myNumber1,this.myNumber2).pipe(
+      tap(data => console.log(data[0])),
+      map(data => this.preprocess(data)),
+      tap(data => console.log(data[0]))
+      );
   }
 }

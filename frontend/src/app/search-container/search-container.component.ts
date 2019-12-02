@@ -92,8 +92,6 @@ export class SearchContainerComponent implements OnInit {
     this.selected$.next(this.selected);
   }
   handleEnter() {
-    this.detailStocks = [...this.detailStocks, this.selectedStock];
-    console.log(this.detailStocks);
     this.dataIexService.getCompanyBySymbol();
   }
 

@@ -1,4 +1,4 @@
-<app-search-container [mockdata]="mockdata"></app-search-container>
+<button (click)="getData()">Get Data</button>
 <div
   style="width:300px; position:fixed; right:0; bottom:0;display:flex;flex-direction: column;"
 >Slice 1:
@@ -6,10 +6,14 @@
   <input [(ngModel)]="myNumber2" />
 </div>
 
-<pre>
-  {{ stocks$ | async | json}}
+<pre style="height:500px;">
+  {{ mydata | async | json }}
 </pre>
-<button (click)="getStocks()"></button>
+
+<app-candlestick-chart [data]="mydata | async"></app-candlestick-chart>
+
+<app-search-container [mockdata]="mockdata"></app-search-container>
+
 
 
 <app-candlestick-chart

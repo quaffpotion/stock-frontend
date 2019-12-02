@@ -20,10 +20,10 @@ export class DataIexService {
   }
 
   getSymbol(symbol: string, num1, num2) {
-    this.http.get('https://api.worldtradingdata.com/api/v1/history?symbol=SNAP&sort=oldest&api_token=demo')
+    return this.http.get('https://api.worldtradingdata.com/api/v1/history?symbol=SNAP&sort=oldest&api_token=demo')
       .pipe(
         map(data => this.dictToArray(data["history"]).slice(num1,num2))
-      )
+      );
   }
 
   dictToArray(data) {
