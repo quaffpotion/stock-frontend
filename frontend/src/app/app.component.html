@@ -1,21 +1,23 @@
-<button (click)="getData()">Get Data</button>
 <div
-  style="width:300px; position:fixed; right:0; bottom:0;display:flex;flex-direction: column;"
->Slice 1:
+  style="width:300px; position:fixed; right:0; bottom:0;display:flex;flex-direction: column;" 
+> 
+<button (click)="getData()">Get Data</button>
+
+Stock: <input [(ngModel)]="myStock">
+Slice 1:
   <input [(ngModel)]="myNumber1" /> Slice 2:
   <input [(ngModel)]="myNumber2" />
 </div>
 
-<pre style="height:500px;">
+<!-- <pre style="height:500px;">
   {{ mydata | async | json }}
-</pre>
+</pre> -->
 
-<app-candlestick-chart [data]="mydata | async"></app-candlestick-chart>
 
 <app-search-container [mockdata]="mockdata"></app-search-container>
 
 
-
+<app-candlestick-chart [data]="mydata | async"></app-candlestick-chart>
 <app-candlestick-chart
   [data]="preprocess(somedata2.slice(myNumber1, myNumber2))"
 ></app-candlestick-chart>

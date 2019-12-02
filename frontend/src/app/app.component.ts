@@ -22,6 +22,7 @@ export class AppComponent {
   data: Observable<DataModel>;
   myNumber1 = 0;
   myNumber2 = 2000;
+  myStock = "SNAP";
   count: any = 0;
   somedata = [new Ohlc(3,7,1,6), new Ohlc(8,10,0,2)];
   somedata2 = MSFT;
@@ -56,7 +57,7 @@ export class AppComponent {
   }
 
   getData() {
-    this.mydata = this.iex.getSymbol("unused", this.myNumber1,this.myNumber2).pipe(
+    this.mydata = this.iex.getSymbol(this.myStock, this.myNumber1,this.myNumber2).pipe(
       tap(data => console.log(data[0])),
       map(data => this.preprocess(data)),
       tap(data => console.log(data[0]))

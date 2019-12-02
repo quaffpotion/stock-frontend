@@ -74,6 +74,7 @@ export class SearchContainerComponent implements OnInit {
 
   onFocus() {
     this.pushSearchTerm();
+    
     this.hidden = false;
   }
   onBlur() {

@@ -7,7 +7,11 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataIexService {
-  constructor(private http: HttpClient) { }
+  api = '';//need to grab!
+
+  constructor(private http: HttpClient) { 
+   
+  }
 
   getCompanyBySymbol() {
     this.http.get('https://api.worldtradingdata.com/api/v1/history?symbol=SNAP&sort=oldest&api_token=demo')
@@ -19,8 +23,9 @@ export class DataIexService {
       )
   }
 
+  
   getSymbol(symbol: string, num1, num2) {
-    return this.http.get('https://api.worldtradingdata.com/api/v1/history?symbol=SNAP&sort=oldest&api_token=demo')
+    return this.http.get(`https://api.worldtradingdata.com/api/v1/history?symbol=${symbol}&sort=oldest&api_token=${this.api}`)
       .pipe(
         map(data => this.dictToArray(data["history"]).slice(num1,num2))
       );
