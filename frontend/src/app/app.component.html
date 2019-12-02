@@ -7,8 +7,9 @@
 </div>
 
 <pre>
-  {{ stocks$ | async }}
+  {{ stocks$ | async | json}}
 </pre>
+<button (click)="getStocks()"></button>
 
 
 <app-candlestick-chart
