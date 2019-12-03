@@ -57,10 +57,8 @@ export class AppComponent {
   }
 
   getData() {
-    this.mydata = this.iex.getSymbol(this.myStock, this.myNumber1,this.myNumber2).pipe(
-      tap(data => console.log(data[0])),
+    this.mydata = this.iex.getSymbol(this.myStock.toUpperCase(), this.myNumber1,this.myNumber2).pipe(
       map(data => this.preprocess(data)),
-      tap(data => console.log(data[0]))
       );
   }
 }
