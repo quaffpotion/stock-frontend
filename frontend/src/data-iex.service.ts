@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DataIexService {
-  api = '';//need to grab!
+  api = 'aurYQM2SliYoJaruI9tRbT9CMv4eHkuBgzcVVCL0lgvdlSXoKsNM4wwylsUh';//need to grab!
 
   constructor(private http: HttpClient) { 
    
